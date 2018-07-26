@@ -10,11 +10,21 @@ import UIKit
 
 class CatalogueCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var assetImageView: UIImageView!
+    var imageToShow: UIImage? {
+        didSet {
+            updateUI()
+        }
+    }
+
+    @IBOutlet weak var assetImageView: UIImageView! { didSet { updateUI() } }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+
+    private func updateUI() {
+        assetImageView?.image = imageToShow
     }
 
 }

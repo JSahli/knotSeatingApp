@@ -10,10 +10,10 @@ class CatalogueViewController: UIViewController {
             collectionView.dataSource = self
             collectionView.dragDelegate = self
            // collectionView.dropDelegate = self
-            let layout = UICollectionViewFlowLayout()
+            guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
             layout.scrollDirection = .horizontal
-            collectionView.collectionViewLayout = layout
             collectionView.register(UINib(nibName: "CatalogueCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "catalogueCell")
+            collectionView.reloadData()
         }
     }
 
@@ -25,18 +25,20 @@ class CatalogueViewController: UIViewController {
                 assets.append(table)
             }
         }
+
     }
 
     override func viewDidLayoutSubviews() {
         if collectionView == nil {
-            let collectionView = UICollectionView(frame: view.bounds)
+            let flowLayout = UICollectionViewFlowLayout()
+            let collectionView = UICollectionView.init(frame: view.bounds, collectionViewLayout: flowLayout)
             view.addSubview(collectionView)
             self.collectionView = collectionView
         }
     }
 }
 
-extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -46,7 +48,17 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "catalogueCell", for: indexPath)
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "catalogueCell", for: indexPath) as? CatalogueCollectionViewCell {
+            let image = assets[indexPath.row].assetImage
+            cell.imageToShow = image
+            return cell
+
+        }
+        return UICollectionViewCell()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.bounds.width / 4, height: view.bounds.height)
     }
     
 }
