@@ -52,7 +52,7 @@
                     <connections>
                         <outlet property="catalogueContainerView" destination="d58-W4-GFU" id="fCt-5v-01B"/>
                         <outlet property="floorPlanContainerView" destination="b65-wt-VO9" id="Jba-Ap-sHc"/>
-                        <outlet property="guestContianerView" destination="tg6-nI-kGt" id="2ki-Pw-kGb"/>
+                        <outlet property="guestContainerView" destination="tg6-nI-kGt" id="3Zo-rS-Q6n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
