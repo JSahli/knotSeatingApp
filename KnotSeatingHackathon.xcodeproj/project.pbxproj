@@ -18,6 +18,7 @@
 		682CEFC6210A1DC10000327C /* GuestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 682CEFC4210A1DC10000327C /* GuestsViewController.xib */; };
 		682CEFC9210A1F500000327C /* GuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */; };
 		682CEFCA210A1F500000327C /* GuestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */; };
+		682CEFCC210A26B50000327C /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFCB210A26B50000327C /* Guest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		682CEFC4210A1DC10000327C /* GuestsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestsViewController.xib; sourceTree = "<group>"; };
 		682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestCollectionViewCell.xib; sourceTree = "<group>"; };
+		682CEFCB210A26B50000327C /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		28F0397C210A197D00F56BC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				682CEFCB210A26B50000327C /* Guest.swift */,
 				28F0397F210A19DD00F56BC7 /* Table.swift */,
 			);
 			path = Models;
@@ -192,6 +195,7 @@
 				682CEFA9210A10380000327C /* ViewController.swift in Sources */,
 				682CEFC9210A1F500000327C /* GuestCollectionViewCell.swift in Sources */,
 				682CEFA7210A10380000327C /* AppDelegate.swift in Sources */,
+				682CEFCC210A26B50000327C /* Guest.swift in Sources */,
 				682CEFC5210A1DC10000327C /* GuestsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
