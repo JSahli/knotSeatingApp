@@ -20,7 +20,7 @@ class CatalogueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         for i in 0...3 {
-            if let image = UIImage(named: "test") {
+            if let image = UIImage(named: "table_circle") {
                 let table = Table(number: i, assetImage: image, maxLimit: 10, guests: nil)
                 assets.append(table)
             }
@@ -58,7 +58,15 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.bounds.width / 4, height: view.bounds.height)
+        return CGSize(width: 100.0, height: 100.0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return (view.bounds.width / 5) - 40.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 20.0, bottom: 0, right: 20.0)
     }
     
 }
