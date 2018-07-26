@@ -45,13 +45,6 @@ extension GuestsViewController: UICollectionViewDataSource {
         cell.groupNameLabel.text = currentGuest.group
         return cell
     }
-
-    private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
-        let guest = testGuests[indexPath.row]
-        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: "MEH" as NSItemProviderWriting))
-        dragItem.localObject = guest
-        return [dragItem]
-    }
 }
 
 extension GuestsViewController: UICollectionViewDragDelegate {
@@ -59,16 +52,23 @@ extension GuestsViewController: UICollectionViewDragDelegate {
         session.localContext = collectionView
         return dragItems(at: indexPath)
     }
+
+    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
 }
 
-//extension GuestsViewController: UICollectionViewDropDelegate {
-//
-//    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-//
-//    }
-//
-//}
-
-extension GuestsViewController: UIDropInteractionDelegate {
-
+// MARK: Helper Functions
+extension GuestsViewController {
+    private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
+        if let image = (collectionView.cellForItem(at: indexPath) as? GuestCollectionViewCell)?.nameLabel.text{
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: image as NSItemProviderWriting))
+            dragItem.localObject = testGuests[indexPath.row]
+            return [dragItem]
+        } else {
+            return []
+        }
+    }
 }
+
+

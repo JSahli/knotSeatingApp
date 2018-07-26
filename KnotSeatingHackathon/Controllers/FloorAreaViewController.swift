@@ -35,7 +35,7 @@ class FloorAreaViewController: UIViewController {
 
 extension FloorAreaViewController: UIDropInteractionDelegate {
     func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        return session.canLoadObjects(ofClass: UIImage.self)
+        return session.canLoadObjects(ofClass: UIImage.self) || session.canLoadObjects(ofClass: String.self)
     }
 
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
@@ -52,7 +52,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     imageView.center = point
 
                 } else if let guest = draggedItem.localObject as? Guest {
-
+                    let point = session.location(in: canvasView)
+                    let label = UILabel(frame: CGRect(x: point.x, y: point.y, width: 80, height: 30))
+                    
+                    label.text = guest.fullName
+                    canvasView.addSubview(label)
+                    label.center = point
                 }
             }
             
