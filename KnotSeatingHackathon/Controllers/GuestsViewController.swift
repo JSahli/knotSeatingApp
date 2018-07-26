@@ -11,6 +11,7 @@ import UIKit
 class GuestsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    let testGuests = Guest.dummyGuests()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class GuestsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(GuestCollectionViewCell.nib, forCellWithReuseIdentifier: GuestCollectionViewCell.reuseId)
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        layout.itemSize = CGSize(width: collectionView.frame.width, height: 40)
+        layout.itemSize = CGSize(width: collectionView.frame.width, height: 50)
     }
 }
 
@@ -32,11 +33,32 @@ extension GuestsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return testGuests.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GuestCollectionViewCell.reuseId, for: indexPath) as? GuestCollectionViewCell else { return UICollectionViewCell() }
+        let currentGuest = testGuests[indexPath.row]
+        cell.nameLabel.text = currentGuest.fullName
+        cell.groupNameLabel.text = currentGuest.group
         return cell
     }
+}
+
+extension GuestsViewController: UICollectionViewDragDelegate {
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return [UIDragItem]()
+    }
+}
+
+//extension GuestsViewController: UICollectionViewDropDelegate {
+//
+//    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+//
+//    }
+//
+//}
+
+extension GuestsViewController: UIDropInteractionDelegate {
+
 }
