@@ -13,26 +13,37 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuestCollectionViewCell" id="gTV-IL-0wX" customClass="GuestCollectionViewCell" customModule="KnotSeatingHackathon" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mE8-PB-tl2" userLabel="ContentView">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thomas Wiseau" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-4b-uwK">
-                                <rect key="frame" x="8" y="15" width="123" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="GHW-gR-Zpq">
+                                <rect key="frame" x="8" y="16" width="122.5" height="38.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thomas Wiseau" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-4b-uwK">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skq-Hr-mQ4">
+                                        <rect key="frame" x="0.0" y="20.5" width="45.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="8zg-4b-uwK" firstAttribute="centerY" secondItem="mE8-PB-tl2" secondAttribute="centerY" id="IPS-Ew-hJn"/>
-                            <constraint firstItem="8zg-4b-uwK" firstAttribute="leading" secondItem="mE8-PB-tl2" secondAttribute="leading" constant="8" id="RNy-x8-9YS"/>
+                            <constraint firstItem="GHW-gR-Zpq" firstAttribute="centerY" secondItem="mE8-PB-tl2" secondAttribute="centerY" id="s6u-x2-oFW"/>
+                            <constraint firstItem="GHW-gR-Zpq" firstAttribute="leading" secondItem="mE8-PB-tl2" secondAttribute="leading" constant="8" id="siJ-Qz-6Kx"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -44,8 +55,12 @@
                 <constraint firstAttribute="bottom" secondItem="mE8-PB-tl2" secondAttribute="bottom" id="gp8-fI-8Aj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="343" height="50"/>
-            <point key="canvasLocation" x="129.5" y="54"/>
+            <size key="customSize" width="343" height="70"/>
+            <connections>
+                <outlet property="groupNameLabel" destination="skq-Hr-mQ4" id="iKM-SF-GMn"/>
+                <outlet property="nameLabel" destination="8zg-4b-uwK" id="X49-1f-FU1"/>
+            </connections>
+            <point key="canvasLocation" x="129.5" y="64"/>
         </collectionViewCell>
     </objects>
 </document>

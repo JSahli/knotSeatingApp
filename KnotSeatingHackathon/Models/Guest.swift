@@ -5,6 +5,10 @@ class Guest: NSObject {
     var lastName: String
     var group: String
 
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+
     init(firstName: String, lastName: String, group: String) {
         self.firstName = firstName
         self.lastName = lastName

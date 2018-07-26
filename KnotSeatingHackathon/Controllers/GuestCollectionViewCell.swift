@@ -10,6 +10,9 @@ import UIKit
 
 class GuestCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var groupNameLabel: UILabel!
+
     static var reuseId: String {
         return "GuestCollectionViewCell"
     }
