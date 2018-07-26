@@ -21,6 +21,8 @@
 		682CEFC9210A1F500000327C /* GuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */; };
 		682CEFCA210A1F500000327C /* GuestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */; };
 		682CEFCC210A26B50000327C /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFCB210A26B50000327C /* Guest.swift */; };
+		7A4D7505210A401100D1CAB1 /* FloorAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4D7503210A401100D1CAB1 /* FloorAreaViewController.swift */; };
+		7A4D7506210A401100D1CAB1 /* FloorAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A4D7504210A401100D1CAB1 /* FloorAreaViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestCollectionViewCell.xib; sourceTree = "<group>"; };
 		682CEFCB210A26B50000327C /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		7A4D7503210A401100D1CAB1 /* FloorAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorAreaViewController.swift; sourceTree = "<group>"; };
+		7A4D7504210A401100D1CAB1 /* FloorAreaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloorAreaViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 		28F0397D210A198B00F56BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */,
+				682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */,
 				28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */,
 				28F03984210A230F00F56BC7 /* CatalogueCollectionViewCell.xib */,
 			);
@@ -119,6 +125,8 @@
 				682CEFC4210A1DC10000327C /* GuestsViewController.xib */,
 				682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */,
 				682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */,
+				7A4D7503210A401100D1CAB1 /* FloorAreaViewController.swift */,
+				7A4D7504210A401100D1CAB1 /* FloorAreaViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 				682CEFCA210A1F500000327C /* GuestCollectionViewCell.xib in Resources */,
 				682CEFB1210A10390000327C /* LaunchScreen.storyboard in Resources */,
 				682CEFAE210A10390000327C /* Assets.xcassets in Resources */,
+				7A4D7506210A401100D1CAB1 /* FloorAreaViewController.xib in Resources */,
 				682CEFAC210A10380000327C /* Main.storyboard in Resources */,
 				682CEFC6210A1DC10000327C /* GuestsViewController.xib in Resources */,
 			);
@@ -198,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28F03982210A1B1C00F56BC7 /* CatalogueViewController.swift in Sources */,
+				7A4D7505210A401100D1CAB1 /* FloorAreaViewController.swift in Sources */,
 				28F03980210A19DD00F56BC7 /* Table.swift in Sources */,
 				682CEFA9210A10380000327C /* ViewController.swift in Sources */,
 				682CEFC9210A1F500000327C /* GuestCollectionViewCell.swift in Sources */,
