@@ -13,7 +13,6 @@ class FloorAreaViewController: UIViewController {
         didSet {
             scrollView.maximumZoomScale = 1.0
             scrollView.minimumZoomScale = 1.0
-            scrollView.delegate = self
         }
     }
 
@@ -28,17 +27,9 @@ class FloorAreaViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func viewDidLayoutSubviews() {
-        print(view.frame.size)
-        print(scrollView.contentSize)
-        print(canvasView.bounds.size)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.contentSize = canvasView.bounds.size
-        print(canvasView.bounds.size)
-        print(scrollView.contentSize)
     }
 }
 
@@ -66,11 +57,5 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
             }
             
         }
-    }
-}
-
-extension FloorAreaViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("scrolled")
     }
 }
