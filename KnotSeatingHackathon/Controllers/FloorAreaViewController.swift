@@ -16,13 +16,12 @@ class FloorAreaViewController: UIViewController {
             scrollView.delegate = self
         }
     }
-    @IBOutlet weak var dropZone: UIView! {
+
+    @IBOutlet weak var canvasView: UIView! {
         didSet {
-            dropZone.addInteraction(UIDropInteraction(delegate: self))
+            canvasView.addInteraction(UIDropInteraction(delegate: self))
         }
     }
-
-    @IBOutlet weak var canvasView: UIView!
     
 
     override func viewDidLoad() {
