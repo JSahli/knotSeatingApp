@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28F03980210A19DD00F56BC7 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0397F210A19DD00F56BC7 /* Table.swift */; };
+		28F03982210A1B1C00F56BC7 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F03981210A1B1C00F56BC7 /* CatalogViewController.swift */; };
 		682CEFA7210A10380000327C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFA6210A10380000327C /* AppDelegate.swift */; };
 		682CEFA9210A10380000327C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFA8210A10380000327C /* ViewController.swift */; };
 		682CEFAC210A10380000327C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682CEFAA210A10380000327C /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		28F0397F210A19DD00F56BC7 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		28F03981210A1B1C00F56BC7 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		682CEFA3210A10380000327C /* KnotSeatingHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnotSeatingHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682CEFA6210A10380000327C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		682CEFA8210A10380000327C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				682CEFA8210A10380000327C /* ViewController.swift */,
 				682CEFAA210A10380000327C /* Main.storyboard */,
 				682CEFC2210A1D920000327C /* Controllers */,
+				28F03981210A1B1C00F56BC7 /* CatalogViewController.swift */,
 				28F0397D210A198B00F56BC7 /* Views */,
 				28F0397C210A197D00F56BC7 /* Models */,
 				28F0397B210A196600F56BC7 /* Supporting Files */,
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F03982210A1B1C00F56BC7 /* CatalogViewController.swift in Sources */,
 				28F03980210A19DD00F56BC7 /* Table.swift in Sources */,
 				682CEFA9210A10380000327C /* ViewController.swift in Sources */,
 				682CEFA7210A10380000327C /* AppDelegate.swift in Sources */,
