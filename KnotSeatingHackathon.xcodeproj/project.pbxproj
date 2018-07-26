@@ -21,6 +21,8 @@
 		682CEFC9210A1F500000327C /* GuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */; };
 		682CEFCA210A1F500000327C /* GuestCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */; };
 		682CEFCC210A26B50000327C /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFCB210A26B50000327C /* Guest.swift */; };
+		74A1D66F210A678F005894FE /* WeddingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A1D66E210A678F005894FE /* WeddingTableView.swift */; };
+		74A1D671210A67C1005894FE /* WeddingTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74A1D670210A67C1005894FE /* WeddingTableView.xib */; };
 		7A4D7505210A401100D1CAB1 /* FloorAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4D7503210A401100D1CAB1 /* FloorAreaViewController.swift */; };
 		7A4D7506210A401100D1CAB1 /* FloorAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A4D7504210A401100D1CAB1 /* FloorAreaViewController.xib */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestCollectionViewCell.xib; sourceTree = "<group>"; };
 		682CEFCB210A26B50000327C /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		74A1D66E210A678F005894FE /* WeddingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeddingTableView.swift; sourceTree = "<group>"; };
+		74A1D670210A67C1005894FE /* WeddingTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeddingTableView.xib; sourceTree = "<group>"; };
 		7A4D7503210A401100D1CAB1 /* FloorAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorAreaViewController.swift; sourceTree = "<group>"; };
 		7A4D7504210A401100D1CAB1 /* FloorAreaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloorAreaViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +87,8 @@
 				682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */,
 				28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */,
 				28F03984210A230F00F56BC7 /* CatalogueCollectionViewCell.xib */,
+				74A1D66E210A678F005894FE /* WeddingTableView.swift */,
+				74A1D670210A67C1005894FE /* WeddingTableView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,8 +129,6 @@
 				28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */,
 				682CEFC3210A1DC10000327C /* GuestsViewController.swift */,
 				682CEFC4210A1DC10000327C /* GuestsViewController.xib */,
-				682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */,
-				682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */,
 				7A4D7503210A401100D1CAB1 /* FloorAreaViewController.swift */,
 				7A4D7504210A401100D1CAB1 /* FloorAreaViewController.xib */,
 			);
@@ -191,6 +195,7 @@
 			files = (
 				28F03986210A230F00F56BC7 /* CatalogueCollectionViewCell.xib in Resources */,
 				682CEFCA210A1F500000327C /* GuestCollectionViewCell.xib in Resources */,
+				74A1D671210A67C1005894FE /* WeddingTableView.xib in Resources */,
 				682CEFB1210A10390000327C /* LaunchScreen.storyboard in Resources */,
 				682CEFAE210A10390000327C /* Assets.xcassets in Resources */,
 				7A4D7506210A401100D1CAB1 /* FloorAreaViewController.xib in Resources */,
@@ -214,6 +219,7 @@
 				682CEFA7210A10380000327C /* AppDelegate.swift in Sources */,
 				28F03985210A230F00F56BC7 /* CatalogueCollectionViewCell.swift in Sources */,
 				682CEFCC210A26B50000327C /* Guest.swift in Sources */,
+				74A1D66F210A678F005894FE /* WeddingTableView.swift in Sources */,
 				682CEFC5210A1DC10000327C /* GuestsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
