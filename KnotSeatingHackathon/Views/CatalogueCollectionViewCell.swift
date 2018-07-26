@@ -10,7 +10,7 @@ import UIKit
 
 class CatalogueCollectionViewCell: UICollectionViewCell {
 
-    var imageToShow: UIImage? {
+    var table: Table? {
         didSet {
             updateUI()
         }
@@ -24,7 +24,9 @@ class CatalogueCollectionViewCell: UICollectionViewCell {
     }
 
     private func updateUI() {
-        assetImageView?.image = imageToShow
+        if let currentTable = table {
+            assetImageView?.image = currentTable.assetImage
+        }
     }
 
 }
