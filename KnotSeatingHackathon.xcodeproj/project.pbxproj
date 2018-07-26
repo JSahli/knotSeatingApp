@@ -75,6 +75,8 @@
 		28F0397D210A198B00F56BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */,
+				682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */,
 				28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */,
 				28F03984210A230F00F56BC7 /* CatalogueCollectionViewCell.xib */,
 			);
@@ -117,8 +119,6 @@
 				28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */,
 				682CEFC3210A1DC10000327C /* GuestsViewController.swift */,
 				682CEFC4210A1DC10000327C /* GuestsViewController.xib */,
-				682CEFC7210A1F500000327C /* GuestCollectionViewCell.swift */,
-				682CEFC8210A1F500000327C /* GuestCollectionViewCell.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

@@ -23,6 +23,8 @@ class GuestsViewController: UIViewController {
         collectionView.register(GuestCollectionViewCell.nib, forCellWithReuseIdentifier: GuestCollectionViewCell.reuseId)
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.itemSize = CGSize(width: collectionView.frame.width, height: 50)
+        collectionView.dragDelegate = self
+        collectionView.dragInteractionEnabled = true
     }
 }
 
@@ -43,11 +45,19 @@ extension GuestsViewController: UICollectionViewDataSource {
         cell.groupNameLabel.text = currentGuest.group
         return cell
     }
+
+    private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
+        let guest = testGuests[indexPath.row]
+        let dragItem = UIDragItem(itemProvider: NSItemProvider(object: "MEH" as NSItemProviderWriting))
+        dragItem.localObject = guest
+        return [dragItem]
+    }
 }
 
 extension GuestsViewController: UICollectionViewDragDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        return [UIDragItem]()
+        session.localContext = collectionView
+        return dragItems(at: indexPath)
     }
 }
 
