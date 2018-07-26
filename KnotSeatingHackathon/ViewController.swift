@@ -16,11 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var floorPlanContainerView: UIView!
     let guestsViewController = GuestsViewController()
     let catalogueViewController = CatalogueViewController()
+    let floorPlanViewController = FloorAreaViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addGuestsViewController()
         addCatalogueViewController()
+        addFloorViewController()
     }
 
     func addGuestsViewController() {
@@ -43,6 +45,17 @@ class ViewController: UIViewController {
         catalogueViewController.view.bottomAnchor.constraint(equalTo: self.catalogueContainerView.bottomAnchor).isActive = true
         catalogueViewController.view.trailingAnchor.constraint(equalTo: self.catalogueContainerView.trailingAnchor).isActive = true
         catalogueViewController.view.leadingAnchor.constraint(equalTo: self.catalogueContainerView.leadingAnchor).isActive = true
+    }
+
+    private func addFloorViewController() {
+        addChildViewController(floorPlanViewController)
+        view.addSubview(floorPlanViewController.view)
+        floorPlanViewController.didMove(toParentViewController: self)
+        floorPlanViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        floorPlanViewController.view.topAnchor.constraint(equalTo: self.floorPlanContainerView.topAnchor).isActive = true
+        floorPlanViewController.view.bottomAnchor.constraint(equalTo: self.floorPlanContainerView.bottomAnchor).isActive = true
+        floorPlanViewController.view.trailingAnchor.constraint(equalTo: self.floorPlanContainerView.trailingAnchor).isActive = true
+        floorPlanViewController.view.leadingAnchor.constraint(equalTo: self.floorPlanContainerView.leadingAnchor).isActive = true
     }
 }
 
