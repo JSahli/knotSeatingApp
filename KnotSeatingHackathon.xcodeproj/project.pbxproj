@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		28F03980210A19DD00F56BC7 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0397F210A19DD00F56BC7 /* Table.swift */; };
-		28F03982210A1B1C00F56BC7 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F03981210A1B1C00F56BC7 /* CatalogViewController.swift */; };
+		28F03982210A1B1C00F56BC7 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */; };
+		28F03985210A230F00F56BC7 /* CatalogueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */; };
+		28F03986210A230F00F56BC7 /* CatalogueCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F03984210A230F00F56BC7 /* CatalogueCollectionViewCell.xib */; };
 		682CEFA7210A10380000327C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFA6210A10380000327C /* AppDelegate.swift */; };
 		682CEFA9210A10380000327C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682CEFA8210A10380000327C /* ViewController.swift */; };
 		682CEFAC210A10380000327C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682CEFAA210A10380000327C /* Main.storyboard */; };
@@ -20,7 +22,9 @@
 
 /* Begin PBXFileReference section */
 		28F0397F210A19DD00F56BC7 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
-		28F03981210A1B1C00F56BC7 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
+		28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueCollectionViewCell.swift; sourceTree = "<group>"; };
+		28F03984210A230F00F56BC7 /* CatalogueCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalogueCollectionViewCell.xib; sourceTree = "<group>"; };
 		682CEFA3210A10380000327C /* KnotSeatingHackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnotSeatingHackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682CEFA6210A10380000327C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		682CEFA8210A10380000327C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		28F0397D210A198B00F56BC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */,
+				28F03984210A230F00F56BC7 /* CatalogueCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,7 +107,7 @@
 		682CEFC2210A1D920000327C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				28F03981210A1B1C00F56BC7 /* CatalogViewController.swift */,
+				28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */,
 				682CEFC3210A1DC10000327C /* GuestsViewController.swift */,
 				682CEFC4210A1DC10000327C /* GuestsViewController.xib */,
 			);
@@ -166,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F03986210A230F00F56BC7 /* CatalogueCollectionViewCell.xib in Resources */,
 				682CEFB1210A10390000327C /* LaunchScreen.storyboard in Resources */,
 				682CEFAE210A10390000327C /* Assets.xcassets in Resources */,
 				682CEFAC210A10380000327C /* Main.storyboard in Resources */,
@@ -180,10 +187,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F03982210A1B1C00F56BC7 /* CatalogViewController.swift in Sources */,
+				28F03982210A1B1C00F56BC7 /* CatalogueViewController.swift in Sources */,
 				28F03980210A19DD00F56BC7 /* Table.swift in Sources */,
 				682CEFA9210A10380000327C /* ViewController.swift in Sources */,
 				682CEFA7210A10380000327C /* AppDelegate.swift in Sources */,
+				28F03985210A230F00F56BC7 /* CatalogueCollectionViewCell.swift in Sources */,
 				682CEFC5210A1DC10000327C /* GuestsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
