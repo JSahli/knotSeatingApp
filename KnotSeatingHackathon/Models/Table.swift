@@ -23,6 +23,14 @@ class Table: NSObject {
         self.guests = currentGuests
     }
 
+    var remainingCapacity: Int {
+        if let guests = guests {
+            return maxLimit - guests.count
+        }
+        return maxLimit
+    }
+
+
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
         let size = image.size
 
