@@ -10,15 +10,29 @@ import UIKit
 
 class WeddingTableView: UIView {
 
-    @IBOutlet weak var tableNumberLabel: UILabel!
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
+    var table: Table? { didSet { updateUI() } }
+
+    @IBOutlet weak var tableNumberLabel: UILabel! { didSet { updateUI() } }
+    @IBOutlet weak var backgroundImageView: UIImageView! {
+        didSet {
+            backgroundImageView.contentMode = .scaleAspectFit
+        updateUI()
+
+        }
+
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        print("Nothing")
+    }
+
+    private func updateUI() {
+        guard let table = self.table else { return }
+        backgroundImageView?.image = table.assetImage
+        tableNumberLabel?.text = String(table.number)
+    }
 }
+
+

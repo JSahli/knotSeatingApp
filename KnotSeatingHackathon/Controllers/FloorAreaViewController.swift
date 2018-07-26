@@ -47,9 +47,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
             for draggedItem in draggedItems {
                 if let table = draggedItem.localObject as? Table {
                     let point = session.location(in: canvasView)
-                    let imageView = UIImageView(image: table.assetImage)
-                    canvasView.addSubview(imageView)
-                    imageView.center = point
+                    let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size) // the frame is wrong
+                    let weddingTable = Bundle.loadView(fromNib: "WeddingTableView", withType: WeddingTableView.self)
+                    weddingTable.frame = frame
+                    canvasView.addSubview(weddingTable)
+                    weddingTable.table = table
+                    weddingTable.center = point
 
                 } else if let guest = draggedItem.localObject as? Guest {
                     let point = session.location(in: canvasView)
@@ -62,5 +65,16 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
             }
             
         }
+    }
+}
+
+
+extension Bundle {
+    static func loadView<T>(fromNib name: String, withType type: T.Type) -> T {
+        if let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? T {
+            return view
+        }
+
+        fatalError("Could not load view with type \(String(describing: type))")
     }
 }
