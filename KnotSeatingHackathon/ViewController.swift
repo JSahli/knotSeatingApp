@@ -15,10 +15,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var catalogueContainerView: UIView!
     @IBOutlet weak var floorPlanContainerView: UIView!
     let guestsViewController = GuestsViewController()
+    let catalogueViewController = CatalogueViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addGuestsViewController()
+        addCatalogueViewController()
     }
 
     func addGuestsViewController() {
@@ -30,6 +32,17 @@ class ViewController: UIViewController {
         guestsViewController.view.bottomAnchor.constraint(equalTo: self.guestContainerView.bottomAnchor).isActive = true
         guestsViewController.view.trailingAnchor.constraint(equalTo: self.guestContainerView.trailingAnchor).isActive = true
         guestsViewController.view.leadingAnchor.constraint(equalTo: self.guestContainerView.leadingAnchor).isActive = true
+    }
+
+    private func addCatalogueViewController() {
+        addChildViewController(catalogueViewController)
+        view.addSubview(catalogueViewController.view)
+        catalogueViewController.didMove(toParentViewController: self)
+        catalogueViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        catalogueViewController.view.topAnchor.constraint(equalTo: self.catalogueContainerView.topAnchor).isActive = true
+        catalogueViewController.view.bottomAnchor.constraint(equalTo: self.catalogueContainerView.bottomAnchor).isActive = true
+        catalogueViewController.view.trailingAnchor.constraint(equalTo: self.catalogueContainerView.trailingAnchor).isActive = true
+        catalogueViewController.view.leadingAnchor.constraint(equalTo: self.catalogueContainerView.leadingAnchor).isActive = true
     }
 }
 
