@@ -25,7 +25,6 @@ class FloorAreaViewController: UIViewController {
             canvasView.addInteraction(UIDropInteraction(delegate: self))
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +44,15 @@ class FloorAreaViewController: UIViewController {
         }
         recognizer.setTranslation(CGPoint.zero, in: self.view)
     }
+
+//    @objc func handleRotate(recognizer: UIRotationGestureRecognizer) {
+//        if let view = recognizer.view as? WeddingTableView {
+//            view.transform = view.transform.rotated(by: recognizer.rotation)
+//            view.tableNumberLabel.transform = view.tableNumberLabel.transform.rotated(by: -recognizer.rotation)
+//            view.numGuestsLabel.transform = view.numGuestsLabel.transform.rotated(by: -recognizer.rotation)
+//            recognizer.rotation = 0
+//        }
+//    }
 
     @objc private func handleTap(recognizer: UITapGestureRecognizer) {
         if let weddingTable = recognizer.view as? WeddingTableView {
@@ -105,6 +113,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
 
+
                         let weddingTableCount = lastDeletedNumber <= weddingTables.count ? lastDeletedNumber : weddingTables.count + 1
 
                         lastDeletedNumber = Int.max
@@ -113,6 +122,8 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                         let weddingTable = WeddingTableView(table: newTable, frame: frame)
                         weddingTable.cancelDelegate = self
 
+                    //                    let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(recognizer:)))
+                    
                         //Pan Gesture
                         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
                         weddingTable.addGestureRecognizer(pan)
@@ -135,6 +146,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     for weddingTable in weddingTables {
                         if weddingTable.frame.contains(point), guest.seatedAtTable == nil {
                             guest.seatedAtTable = weddingTable.table.number
+                            guestCell.selectionStyle = UITableViewCellSelectionStyle.none
                             guestCell.updateUI()
                             weddingTable.addGuest(guest)
                             }

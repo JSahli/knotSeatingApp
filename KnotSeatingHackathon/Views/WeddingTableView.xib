@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="201" height="197"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5iv-ca-GFh">
+                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5iv-ca-GFh">
                     <rect key="frame" x="0.0" y="0.0" width="201" height="197"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8h3-wq-15U">
@@ -52,11 +52,11 @@
                 <constraint firstItem="nWo-dr-Qs5" firstAttribute="top" secondItem="8h3-wq-15U" secondAttribute="bottom" id="L5s-d0-Kqp"/>
                 <constraint firstItem="5iv-ca-GFh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Mcb-tv-EjF"/>
                 <constraint firstItem="8h3-wq-15U" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WhK-tG-PEq"/>
-                <constraint firstItem="nWo-dr-Qs5" firstAttribute="centerX" secondItem="5iv-ca-GFh" secondAttribute="centerX" id="bS0-dD-4Op"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5iv-ca-GFh" secondAttribute="bottom" id="e5O-Vv-FUV"/>
                 <constraint firstItem="adn-Sf-Gum" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-6" id="eTU-tY-Q63"/>
                 <constraint firstItem="8h3-wq-15U" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eYT-QA-0V3"/>
                 <constraint firstItem="5iv-ca-GFh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iNo-LK-H70"/>
+                <constraint firstItem="nWo-dr-Qs5" firstAttribute="centerX" secondItem="8h3-wq-15U" secondAttribute="centerX" id="qCX-V1-uhN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

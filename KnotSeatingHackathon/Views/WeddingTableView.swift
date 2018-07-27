@@ -18,10 +18,10 @@ import UIKit
 
 class WeddingTableView: UIView {
 
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var tableNumberLabel: UILabel!
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var numGuestsLabel: UILabel!
+    @IBOutlet var contentView: UIView! { didSet { updateUI() } }
+    @IBOutlet weak var tableNumberLabel: UILabel! { didSet { updateUI() } }
+    @IBOutlet weak var backgroundImageView: UIImageView! { didSet { updateUI() } }
+    @IBOutlet weak var numGuestsLabel: UILabel! { didSet { updateUI() } }
 
     var table: Table! { didSet { updateUI() } }
 
