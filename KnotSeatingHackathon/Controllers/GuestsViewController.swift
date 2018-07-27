@@ -10,21 +10,51 @@ import UIKit
 
 class GuestsViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var collectionView: UICollectionView!
     let testGuests = Guest.dummyGuests()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
+//        configureCollectionView()
+        configureTableView()
     }
 
-    private func configureCollectionView() {
-        collectionView.dataSource = self
-        collectionView.register(GuestCollectionViewCell.nib, forCellWithReuseIdentifier: GuestCollectionViewCell.reuseId)
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        layout.itemSize = CGSize(width: collectionView.frame.width, height: 50)
-        collectionView.dragDelegate = self
-        collectionView.dragInteractionEnabled = true
+    private func configureTableView() {
+        tableView.dragInteractionEnabled = true
+        tableView.dataSource = self
+        tableView.dragDelegate = self
+    }
+
+//    private func configureCollectionView() {
+//        collectionView.dataSource = self
+//        collectionView.register(GuestCollectionViewCell.nib, forCellWithReuseIdentifier: GuestCollectionViewCell.reuseId)
+//        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+//        layout.itemSize = CGSize(width: collectionView.frame.width, height: 50)
+//        collectionView.dragDelegate = self
+//        collectionView.dragInteractionEnabled = true
+//    }
+}
+
+extension GuestsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return testGuests.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return testGuests[section].count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return testGuests[section][0].group
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        let currentGuest = testGuests[indexPath.section][indexPath.row]
+        cell.textLabel?.text = currentGuest.fullName
+        cell.detailTextLabel?.text = currentGuest.group
+        return cell
     }
 }
 
@@ -40,30 +70,43 @@ extension GuestsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GuestCollectionViewCell.reuseId, for: indexPath) as? GuestCollectionViewCell else { return UICollectionViewCell() }
-        let currentGuest = testGuests[indexPath.row]
+        let currentGuest = testGuests[indexPath.section][indexPath.row]
         cell.nameLabel.text = currentGuest.fullName
         cell.groupNameLabel.text = currentGuest.group
         return cell
     }
 }
 
-extension GuestsViewController: UICollectionViewDragDelegate {
-    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        session.localContext = collectionView
+//extension GuestsViewController: UICollectionViewDragDelegate {
+//    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+//        session.localContext = collectionView
+//        return dragItems(at: indexPath)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+//        return dragItems(at: indexPath)
+//    }
+//}
+
+extension GuestsViewController: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        session.localContext = tableView
         return dragItems(at: indexPath)
     }
 
-    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+    func tableView(_ tableView: UITableView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        session.localContext = tableView
         return dragItems(at: indexPath)
     }
+    
 }
 
 // MARK: Helper Functions
 extension GuestsViewController {
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
-        if let image = (collectionView.cellForItem(at: indexPath) as? GuestCollectionViewCell)?.nameLabel.text{
-            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: image as NSItemProviderWriting))
-            dragItem.localObject = testGuests[indexPath.row]
+        if let name = (tableView.cellForRow(at: indexPath))?.textLabel?.text{
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: name as NSItemProviderWriting))
+            dragItem.localObject = testGuests[indexPath.section][indexPath.row]
             return [dragItem]
         } else {
             return []
