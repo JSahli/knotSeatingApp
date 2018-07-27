@@ -10,6 +10,7 @@ import UIKit
 
 protocol FloorAreaViewControllerDelegate: class {
     func floorAreaViewController(controller: FloorAreaViewController, didSuccessfullyRemoveGuest guest: Guest?, fromTable table: Table?)
+    func floorAreaViewController(controller: FloorAreaViewController, didRemoveWeddingTableView weddingTable: WeddingTableView?)
 }
 
 class FloorAreaViewController: UIViewController {
@@ -158,6 +159,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
 extension FloorAreaViewController: CancelButtonDelegate {
     func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
         guard let index = weddingTables.index(of: table) else { return }
+        for guest in table.table.guests {
+            guest.seatedAtTable = nil
+        }
+        let wedding = weddingTables[index]
+        table.table.guests.removeAll()
+        delegate?.floorAreaViewController(controller: self, didRemoveWeddingTableView: wedding)
         weddingTables.remove(at: index)
         table.removeFromSuperview()
     }

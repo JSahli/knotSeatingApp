@@ -61,11 +61,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: FloorAreaViewControllerDelegate {
-    func floorAreaViewController(controller: FloorAreaViewController, didSuccessfullyRemoveGuest guest: Guest?, fromTable table: Table?) {
-        // update the guest vc
+    func floorAreaViewController(controller: FloorAreaViewController, didRemoveWeddingTableView weddingTable: WeddingTableView?) {
         guestsViewController.setNeedsUpdate()
-        
     }
+
+    func floorAreaViewController(controller: FloorAreaViewController, didSuccessfullyRemoveGuest guest: Guest?, fromTable table: Table?) {
+        guestsViewController.setNeedsUpdate()
+    }
+
 
 
 }
