@@ -17,8 +17,7 @@ class FloorAreaViewController: UIViewController {
 
     var weddingTables = [WeddingTableView]()
     var highlightedTables = Set<WeddingTableView>()
-    var lastDeletedNumber: [Int] = []
-    var weddingTableCount = Int.max
+    var lastDeletedNumber: Int = Int.max
 
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
@@ -124,13 +123,10 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
 
-                    if !lastDeletedNumber.isEmpty {
-                         weddingTableCount = lastDeletedNumber.first! <= weddingTables.count ? lastDeletedNumber.first! : weddingTables.count + 1
 
-                        lastDeletedNumber.removeFirst()
-                    } else {
-                        weddingTableCount =  weddingTables.count + 1
-                    }
+                        let weddingTableCount = lastDeletedNumber <= weddingTables.count ? lastDeletedNumber : weddingTables.count + 1
+
+                        lastDeletedNumber = Int.max
 
                         let newTable = Table(number: weddingTableCount, tableType: tableType)
                         let weddingTable = WeddingTableView(table: newTable, frame: frame)
@@ -175,9 +171,7 @@ extension FloorAreaViewController: CancelButtonDelegate {
     func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
         guard let index = weddingTables.index(of: table) else { return }
 
-        if !lastDeletedNumber.contains(table.table.number) {
-            lastDeletedNumber.append(table.table.number)
-        }
+        lastDeletedNumber = table.table.number
 
         for guest in table.table.guests {
             guest.seatedAtTable = nil
@@ -203,6 +197,7 @@ extension FloorAreaViewController: WeddingTableGuestsViewControllerDelegate {
                         }
 
                     }
+
                 delegate?.floorAreaViewController(controller: self, didSuccessfullyRemoveGuest: guest, fromTable: table)
             }
         }
