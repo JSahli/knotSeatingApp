@@ -6,6 +6,10 @@
 //  Copyright © 2018 XO Group. All rights reserved.
 //
 
+protocol CancelButtonDelegate: class {
+    func cancelButtonPressed(selector: UIButton, selected weddingTable: WeddingTableView)
+}
+
 import UIKit
 
 protocol WeddingTableViewDelegate: class {
@@ -21,7 +25,7 @@ class WeddingTableView: UIView {
 
     var table: Table! { didSet { updateUI() } }
 
-    weak var delegate: WeddingTableViewDelegate?
+    weak var cancelDelegate: CancelButtonDelegate?
 
     init(table: Table, frame: CGRect) {
         super.init(frame: frame)
@@ -55,6 +59,11 @@ class WeddingTableView: UIView {
         backgroundImageView?.image = table.assetImage
         tableNumberLabel?.text = String(table.number)
         numGuestsLabel.text = String("\(table.guests.count)/ \(table.maxLimit)")
+    }
+
+
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        cancelDelegate?.cancelButtonPressed(selector: sender, selected: self)
     }
 }
 

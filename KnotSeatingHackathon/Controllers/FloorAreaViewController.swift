@@ -28,6 +28,7 @@ class FloorAreaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -89,9 +90,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
                     let newTable = Table(number: weddingTables.count + 1, tableType: tableType)
                     let weddingTable = WeddingTableView(table: newTable, frame: frame)
-                    //weddingTable.delegate = self
+                    weddingTable.cancelDelegate = self
+
+                    //Pan Gesture
                     let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
                     weddingTable.addGestureRecognizer(pan)
+
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     weddingTable.setNeedsUpdate()
@@ -112,5 +116,14 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                 }
             }
         }
+    }
+}
+
+
+extension FloorAreaViewController: CancelButtonDelegate {
+    func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
+        guard let index = weddingTables.index(of: table) else { return }
+        weddingTables.remove(at: index)
+        table.removeFromSuperview()
     }
 }
