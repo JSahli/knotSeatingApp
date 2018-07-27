@@ -111,6 +111,10 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
                     weddingTable.addGestureRecognizer(pan)
 
+                    // Tap Gesture
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
+                    weddingTable.addGestureRecognizer(tap)
+
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     weddingTable.setNeedsUpdate()
