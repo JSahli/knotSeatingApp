@@ -11,21 +11,28 @@ import UIKit
 class WeddingTableView: UIView {
 
 
-    var table: Table? { didSet { updateUI() } }
+    @IBOutlet var contentView: UIView!
+    var table: Table! { didSet { updateUI() } }
 
-    @IBOutlet weak var tableNumberLabel: UILabel! { didSet { updateUI() } }
-    @IBOutlet weak var backgroundImageView: UIImageView! {
-        didSet {
-            backgroundImageView.contentMode = .scaleAspectFit
+    @IBOutlet weak var tableNumberLabel: UILabel!
+    @IBOutlet weak var backgroundImageView: UIImageView!
+
+    init(table: Table, frame: CGRect) {
+        super.init(frame: frame)
+        prepare()
+        self.table = table
         updateUI()
-
-        }
-
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        print("Nothing")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        prepare()
+    }
+
+    private func prepare() {
+        Bundle.main.loadNibNamed("WeddingTableView", owner: self, options: nil)
+        addSubview(contentView)
+        contentView.frame = self.bounds
     }
 
     private func updateUI() {

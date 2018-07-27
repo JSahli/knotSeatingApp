@@ -9,6 +9,9 @@
 import UIKit
 class FloorAreaViewController: UIViewController {
 
+    var weddingTables = [WeddingTableView]()
+    var highlightedTables = Set<WeddingTableView>()
+
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.maximumZoomScale = 1.0
@@ -39,20 +42,48 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
     }
 
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        let point = session.location(in: canvasView)
+        for weddingTable in weddingTables {
+            if weddingTable.frame.contains(point) {
+                UIView.animate(withDuration: 0.3) {
+                    weddingTable.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+                    self.highlightedTables.insert(weddingTable)
+                }
+            }
+        }
+        for weddingTable in highlightedTables {
+            if !weddingTable.frame.contains(point) {
+                UIView.animate(withDuration: 0.3) {
+                    weddingTable.transform = .identity
+                    self.highlightedTables.remove(weddingTable)
+                }
+            }
+        }
         return UIDropProposal(operation: .copy)
     }
 
+    func deHighlightAllTables() {
+        for weddingTable in highlightedTables {
+            UIView.animate(withDuration: 0.3) {
+                weddingTable.transform = .identity
+                self.highlightedTables.remove(weddingTable)
+            }
+        }
+    }
+
     func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        deHighlightAllTables()
         if let draggedItems = session.localDragSession?.items {
             for draggedItem in draggedItems {
                 if let table = draggedItem.localObject as? Table {
                     let point = session.location(in: canvasView)
-                    let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size) // the frame is wrong
-                    let weddingTable = Bundle.loadView(fromNib: "WeddingTableView", withType: WeddingTableView.self)
-                    weddingTable.frame = frame
-                    canvasView.addSubview(weddingTable)
-                    weddingTable.table = table
+                    let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size)
+                    let weddingTable = WeddingTableView(table: table, frame: frame)
                     weddingTable.center = point
+                    weddingTables.append(weddingTable)
+                    canvasView.addSubview(weddingTable)
+
+
 
                 } else if let guest = draggedItem.localObject as? Guest {
                     let point = session.location(in: canvasView)
@@ -63,18 +94,17 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     label.center = point
                 }
             }
-            
         }
     }
 }
 
 
-extension Bundle {
-    static func loadView<T>(fromNib name: String, withType type: T.Type) -> T {
-        if let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? T {
-            return view
-        }
-
-        fatalError("Could not load view with type \(String(describing: type))")
-    }
-}
+//extension Bundle {
+//    static func loadView<T>(fromNib name: String, withType type: T.Type) -> T {
+//        if let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? T {
+//            return view
+//        }
+//
+//        fatalError("Could not load view with type \(String(describing: type))")
+//    }
+//}
