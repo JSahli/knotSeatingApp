@@ -44,6 +44,15 @@ class FloorAreaViewController: UIViewController {
         recognizer.setTranslation(CGPoint.zero, in: self.view)
     }
 
+//    @objc func handleRotate(recognizer: UIRotationGestureRecognizer) {
+//        if let view = recognizer.view as? WeddingTableView {
+//            view.transform = view.transform.rotated(by: recognizer.rotation)
+//            view.tableNumberLabel.transform = view.tableNumberLabel.transform.rotated(by: -recognizer.rotation)
+//            view.numGuestsLabel.transform = view.numGuestsLabel.transform.rotated(by: -recognizer.rotation)
+//            recognizer.rotation = 0
+//        }
+//    }
+
     @objc private func handleTap(recognizer: UITapGestureRecognizer) {
         if let weddingTable = recognizer.view as? WeddingTableView {
             let guests = weddingTable.table.guests
@@ -104,16 +113,16 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
                     let newTable = Table(number: weddingTables.count + 1, tableType: tableType)
                     let weddingTable = WeddingTableView(table: newTable, frame: frame)
-                    weddingTable.cancelDelegate = self
 
+//                    let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(recognizer:)))
                     //Pan Gesture
                     let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
                     weddingTable.addGestureRecognizer(pan)
-
+//                    weddingTable.addGestureRecognizer(rotate)
+                    weddingTable.cancelDelegate = self
                     // Tap Gesture
                     let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
                     weddingTable.addGestureRecognizer(tap)
-
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     weddingTable.setNeedsUpdate()
