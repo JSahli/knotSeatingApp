@@ -17,6 +17,8 @@ class FloorAreaViewController: UIViewController {
 
     var weddingTables = [WeddingTableView]()
     var highlightedTables = Set<WeddingTableView>()
+    var lastDeletedNumber: [Int] = []
+    var weddingTableCount = Int.max
 
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
@@ -121,22 +123,35 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                 if let tableType = draggedItem.localObject as? Table.TableType {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
-                    let newTable = Table(number: weddingTables.count + 1, tableType: tableType)
-                    let weddingTable = WeddingTableView(table: newTable, frame: frame)
 
-//                    let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(recognizer:)))
-                    //Pan Gesture
-                    let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
-                    weddingTable.addGestureRecognizer(pan)
-//                    weddingTable.addGestureRecognizer(rotate)
-                    weddingTable.cancelDelegate = self
-                    // Tap Gesture
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
-                    weddingTable.addGestureRecognizer(tap)
-                    weddingTable.center = point
-                    weddingTables.append(weddingTable)
-                    weddingTable.setNeedsUpdate()
-                    canvasView.addSubview(weddingTable)
+                    if !lastDeletedNumber.isEmpty {
+                         weddingTableCount = lastDeletedNumber.first! <= weddingTables.count ? lastDeletedNumber.first! : weddingTables.count + 1
+
+                        lastDeletedNumber.removeFirst()
+                    } else {
+                        weddingTableCount =  weddingTables.count + 1
+                    }
+
+                        let newTable = Table(number: weddingTableCount, tableType: tableType)
+                        let weddingTable = WeddingTableView(table: newTable, frame: frame)
+                        weddingTable.cancelDelegate = self
+
+                    //                    let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(recognizer:)))
+                    
+                        //Pan Gesture
+                        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
+                        weddingTable.addGestureRecognizer(pan)
+
+                        // Tap Gesture
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
+                        weddingTable.addGestureRecognizer(tap)
+
+                        weddingTable.center = point
+                        weddingTables.append(weddingTable)
+                        weddingTable.setNeedsUpdate()
+
+                        canvasView.addSubview(weddingTable)
+
 
                 } else if let guestCell = draggedItem.localObject as? GuestTableViewCell,
                           let guest = guestCell.guest {
@@ -159,16 +174,23 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
 extension FloorAreaViewController: CancelButtonDelegate {
     func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
         guard let index = weddingTables.index(of: table) else { return }
+
+        if !lastDeletedNumber.contains(table.table.number) {
+            lastDeletedNumber.append(table.table.number)
+        }
+
         for guest in table.table.guests {
             guest.seatedAtTable = nil
         }
         let wedding = weddingTables[index]
         table.table.guests.removeAll()
         delegate?.floorAreaViewController(controller: self, didRemoveWeddingTableView: wedding)
+
         weddingTables.remove(at: index)
         table.removeFromSuperview()
     }
 }
+
 extension FloorAreaViewController: WeddingTableGuestsViewControllerDelegate {
     func weddingTableGuestsViewController(controller: WeddingTableGuestsViewController, didDeleteGuest guest: Guest?, fromTable table: Table?) {
         if let table = table, let guest = guest {
@@ -181,7 +203,6 @@ extension FloorAreaViewController: WeddingTableGuestsViewControllerDelegate {
                         }
 
                     }
-
                 delegate?.floorAreaViewController(controller: self, didSuccessfullyRemoveGuest: guest, fromTable: table)
             }
         }
