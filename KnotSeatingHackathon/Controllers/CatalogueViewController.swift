@@ -13,6 +13,14 @@ class CatalogueViewController: UIViewController {
             guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
             layout.scrollDirection = .horizontal
             collectionView.register(UINib(nibName: "CatalogueCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "catalogueCell")
+            collectionView.backgroundColor =  UIColor.darkGray
+            //Rounding top left corner of catalogue
+            let rectShape = CAShapeLayer()
+            rectShape.bounds = collectionView.layer.frame
+            rectShape.position = collectionView.center
+            rectShape.path = UIBezierPath(roundedRect: collectionView.layer.bounds, byRoundingCorners: [.topLeft], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            collectionView.layer.mask = rectShape
+
             collectionView.reloadData()
         }
     }
@@ -56,11 +64,11 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return (view.bounds.width / 4) - 40.0
+        return (view.bounds.width / 5) - 40.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return (view.bounds.width / 4) - 40.0
+        return (view.bounds.width / 5) - 40.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
