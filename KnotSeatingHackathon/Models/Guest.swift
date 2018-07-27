@@ -22,9 +22,6 @@ class Guest: NSObject {
          Guest(firstName: "Ben", lastName: "Mayer", group: "iOS Friends"),
          Guest(firstName: "Jen", lastName: "Sipila", group: "iOS Friends"),
          Guest(firstName: "Jesse", lastName: "Sahli", group: "iOS Friends"),
-         Guest(firstName: "Erica", lastName: "Correa", group: "iOS Friends"),
-         Guest(firstName: "George", lastName: "Correa", group: "iOS Friends"),
-         Guest(firstName: "Daniel", lastName: "Burbank", group: "iOS Friends"),
          Guest(firstName: "Stephen", lastName: "Bradley", group: "iOS Friends"),
         Guest(firstName: "Krishna", lastName: "Ramachandran", group: "iOS Friends")]
         let guests2 = [Guest(firstName: "Felix", lastName: "Gregory", group: "Family"),

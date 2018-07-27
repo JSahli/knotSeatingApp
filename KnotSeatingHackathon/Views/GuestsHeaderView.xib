@@ -19,8 +19,8 @@
             <rect key="frame" x="0.0" y="0.0" width="482" height="109"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jn-W3-k4t">
-                    <rect key="frame" x="4" y="61" width="178" height="48"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jn-W3-k4t">
+                    <rect key="frame" x="4" y="61" width="474" height="48"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -29,6 +29,7 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="3Jn-W3-k4t" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="4" id="HaW-KG-6bh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3Jn-W3-k4t" secondAttribute="trailing" constant="4" id="Hxb-d8-W7I"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="3Jn-W3-k4t" secondAttribute="bottom" id="P61-oV-OUG"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -25,7 +25,7 @@ class GuestsViewController: UIViewController {
         tableView.dragInteractionEnabled = true
         tableView.dataSource = self
         tableView.dragDelegate = self
-//        tableView.tableHeaderView = GuestsHeaderView(frame: CGRect(x: 0, y: 0, width: 500, height: 90))
+        tableView.tableHeaderView = GuestsHeaderView(frame: CGRect(x: 0, y: 0, width: 400, height: 90))
     }
 
     func setNeedsUpdate() {
