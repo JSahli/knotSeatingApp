@@ -37,21 +37,33 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adn-Sf-Gum">
+                    <rect key="frame" x="171" y="-6" width="36" height="36"/>
+                    <state key="normal" image="cancel_36pt"/>
+                    <connections>
+                        <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="PqZ-3k-Mbb"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5iv-ca-GFh" secondAttribute="trailing" id="5A0-Ha-U9J"/>
+                <constraint firstItem="adn-Sf-Gum" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="6" id="FzC-7d-gyR"/>
                 <constraint firstItem="nWo-dr-Qs5" firstAttribute="top" secondItem="8h3-wq-15U" secondAttribute="bottom" id="L5s-d0-Kqp"/>
                 <constraint firstItem="5iv-ca-GFh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Mcb-tv-EjF"/>
                 <constraint firstItem="8h3-wq-15U" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WhK-tG-PEq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5iv-ca-GFh" secondAttribute="bottom" id="e5O-Vv-FUV"/>
+                <constraint firstItem="adn-Sf-Gum" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-6" id="eTU-tY-Q63"/>
                 <constraint firstItem="8h3-wq-15U" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eYT-QA-0V3"/>
                 <constraint firstItem="5iv-ca-GFh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iNo-LK-H70"/>
                 <constraint firstItem="nWo-dr-Qs5" firstAttribute="centerX" secondItem="8h3-wq-15U" secondAttribute="centerX" id="qCX-V1-uhN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-62.5" y="286.5"/>
+            <point key="canvasLocation" x="-64.5" y="305.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="cancel_36pt" width="36" height="36"/>
+    </resources>
 </document>

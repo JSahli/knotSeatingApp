@@ -27,6 +27,7 @@ class FloorAreaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +35,7 @@ class FloorAreaViewController: UIViewController {
         scrollView.contentSize = canvasView.bounds.size
     }
 
-    @objc func handlePan(recognizer: UIPanGestureRecognizer) {
+    @objc private func handlePan(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self.view)
         if let view = recognizer.view {
             view.center = CGPoint(x:view.center.x + translation.x,
@@ -51,6 +52,21 @@ class FloorAreaViewController: UIViewController {
 //            recognizer.rotation = 0
 //        }
 //    }
+
+    @objc private func handleTap(recognizer: UITapGestureRecognizer) {
+        if let weddingTable = recognizer.view as? WeddingTableView {
+            let guests = weddingTable.table.guests
+            let vc = WeddingTableGuestsViewController(nibName: "WeddingTableGuestsViewController", bundle: nil)
+            let minimumSize = vc.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+            vc.preferredContentSize = CGSize(width: minimumSize.width, height: 200.0)//minimumSize
+            vc.modalPresentationStyle = .popover
+            vc.popoverPresentationController?.sourceView = weddingTable
+            vc.popoverPresentationController?.sourceRect = view.convert(weddingTable.bounds, to: canvasView)
+            vc.popoverPresentationController?.canOverlapSourceViewRect = false
+            vc.guestList = guests
+            present(vc, animated: true, completion: nil)
+        }
+    }
 }
 
 extension FloorAreaViewController: UIDropInteractionDelegate {
@@ -97,11 +113,13 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
                     let newTable = Table(number: weddingTables.count + 1, tableType: tableType)
                     let weddingTable = WeddingTableView(table: newTable, frame: frame)
-                    //weddingTable.delegate = self
+
 //                    let rotate = UIRotationGestureRecognizer(target: self, action: #selector(handleRotate(recognizer:)))
+                    //Pan Gesture
                     let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
                     weddingTable.addGestureRecognizer(pan)
 //                    weddingTable.addGestureRecognizer(rotate)
+                    weddingTable.cancelDelegate = self
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     weddingTable.setNeedsUpdate()
@@ -113,7 +131,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
 
                     let point = session.location(in: canvasView)
                     for weddingTable in weddingTables {
-                        if weddingTable.frame.contains(point) {
+                        if weddingTable.frame.contains(point), guest.seatedAtTable == nil {
                             guest.seatedAtTable = weddingTable.table.number
                             guestCell.updateUI()
                             weddingTable.addGuest(guest)
@@ -124,3 +142,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
         }
     }
 }
+
+extension FloorAreaViewController: CancelButtonDelegate {
+    func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
+        guard let index = weddingTables.index(of: table) else { return }
+        weddingTables.remove(at: index)
+        table.removeFromSuperview()
+    }
+}
+
