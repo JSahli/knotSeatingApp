@@ -20,6 +20,15 @@ class Table: NSObject {
         guests.append(guest)
     }
 
+    func removeGuest(guest: Guest) -> Bool {
+        if let index = guests.index(of: guest) {
+            guest.seatedAtTable = nil
+            guests.remove(at: index)
+            return true
+        }
+        return false
+    }
+
 //    func set(tableNumber number: Int) {
 //        self.number = number
 //    }

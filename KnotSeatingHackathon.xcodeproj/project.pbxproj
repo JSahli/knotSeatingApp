@@ -10,6 +10,7 @@
 		28EC6EE3210B688E0087EAB1 /* WeddingTableGuestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EC6EE1210B688E0087EAB1 /* WeddingTableGuestsViewController.swift */; };
 		28EC6EE4210B688E0087EAB1 /* WeddingTableGuestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28EC6EE2210B688E0087EAB1 /* WeddingTableGuestsViewController.xib */; };
 		28EC6EE6210B7D1D0087EAB1 /* WeddingTablePopoverTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28EC6EE5210B7D1D0087EAB1 /* WeddingTablePopoverTableViewCell.xib */; };
+		28EC6EE8210B854F0087EAB1 /* WeddingTablePopoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EC6EE7210B854F0087EAB1 /* WeddingTablePopoverTableViewCell.swift */; };
 		28F03980210A19DD00F56BC7 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0397F210A19DD00F56BC7 /* Table.swift */; };
 		28F03982210A1B1C00F56BC7 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */; };
 		28F03985210A230F00F56BC7 /* CatalogueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */; };
@@ -36,6 +37,7 @@
 		28EC6EE1210B688E0087EAB1 /* WeddingTableGuestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeddingTableGuestsViewController.swift; sourceTree = "<group>"; };
 		28EC6EE2210B688E0087EAB1 /* WeddingTableGuestsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeddingTableGuestsViewController.xib; sourceTree = "<group>"; };
 		28EC6EE5210B7D1D0087EAB1 /* WeddingTablePopoverTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeddingTablePopoverTableViewCell.xib; sourceTree = "<group>"; };
+		28EC6EE7210B854F0087EAB1 /* WeddingTablePopoverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeddingTablePopoverTableViewCell.swift; sourceTree = "<group>"; };
 		28F0397F210A19DD00F56BC7 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		28F03981210A1B1C00F56BC7 /* CatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
 		28F03983210A230F00F56BC7 /* CatalogueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				74A1D66E210A678F005894FE /* WeddingTableView.swift */,
 				74A1D670210A67C1005894FE /* WeddingTableView.xib */,
 				28EC6EE5210B7D1D0087EAB1 /* WeddingTablePopoverTableViewCell.xib */,
+				28EC6EE7210B854F0087EAB1 /* WeddingTablePopoverTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				682CEFCF210B5C460000327C /* GuestTableViewCell.swift in Sources */,
 				682CEFCC210A26B50000327C /* Guest.swift in Sources */,
 				74A1D66F210A678F005894FE /* WeddingTableView.swift in Sources */,
+				28EC6EE8210B854F0087EAB1 /* WeddingTablePopoverTableViewCell.swift in Sources */,
 				682CEFC5210A1DC10000327C /* GuestsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

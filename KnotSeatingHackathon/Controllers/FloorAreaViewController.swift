@@ -7,11 +7,18 @@
 //
 
 import UIKit
+
+protocol FloorAreaViewControllerDelegate: class {
+    func floorAreaViewController(controller: FloorAreaViewController, didSuccessfullyRemoveGuest guest: Guest?, fromTable table: Table?)
+    func floorAreaViewController(controller: FloorAreaViewController, didRemoveWeddingTableView weddingTable: WeddingTableView?)
+}
+
 class FloorAreaViewController: UIViewController {
 
     var weddingTables = [WeddingTableView]()
     var highlightedTables = Set<WeddingTableView>()
-    var lastDeletedNumber: Int = Int.max
+    var lastDeletedNumber: [Int] = []
+    var weddingTableCount = Int.max
 
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
@@ -25,6 +32,7 @@ class FloorAreaViewController: UIViewController {
             canvasView.addInteraction(UIDropInteraction(delegate: self))
         }
     }
+    weak var delegate: FloorAreaViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +67,10 @@ class FloorAreaViewController: UIViewController {
             let guests = weddingTable.table.guests
             let vc = WeddingTableGuestsViewController(nibName: "WeddingTableGuestsViewController", bundle: nil)
             let minimumSize = vc.view.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-            vc.preferredContentSize = CGSize(width: minimumSize.width, height: 200.0)//minimumSize
+            let height = CGFloat(min(guests.count * 70, 200))
+            vc.preferredContentSize = CGSize(width: minimumSize.width, height: height)
+            vc.delegate = self
+            vc.table = weddingTable.table
             vc.modalPresentationStyle = .popover
             vc.popoverPresentationController?.sourceView = weddingTable
             vc.popoverPresentationController?.sourceRect = view.convert(weddingTable.bounds, to: canvasView)
@@ -113,10 +124,13 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
 
+                    if !lastDeletedNumber.isEmpty {
+                         weddingTableCount = lastDeletedNumber.first! <= weddingTables.count ? lastDeletedNumber.first! : weddingTables.count + 1
 
-                        let weddingTableCount = lastDeletedNumber <= weddingTables.count ? lastDeletedNumber : weddingTables.count + 1
-
-                        lastDeletedNumber = Int.max
+                        lastDeletedNumber.removeFirst()
+                    } else {
+                        weddingTableCount =  weddingTables.count + 1
+                    }
 
                         let newTable = Table(number: weddingTableCount, tableType: tableType)
                         let weddingTable = WeddingTableView(table: newTable, frame: frame)
@@ -160,9 +174,38 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
 extension FloorAreaViewController: CancelButtonDelegate {
     func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
         guard let index = weddingTables.index(of: table) else { return }
-        lastDeletedNumber = table.table.number
+
+        if !lastDeletedNumber.contains(table.table.number) {
+            lastDeletedNumber.append(table.table.number)
+        }
+
+        for guest in table.table.guests {
+            guest.seatedAtTable = nil
+        }
+        let wedding = weddingTables[index]
+        table.table.guests.removeAll()
+        delegate?.floorAreaViewController(controller: self, didRemoveWeddingTableView: wedding)
+
         weddingTables.remove(at: index)
         table.removeFromSuperview()
+    }
+}
+
+extension FloorAreaViewController: WeddingTableGuestsViewControllerDelegate {
+    func weddingTableGuestsViewController(controller: WeddingTableGuestsViewController, didDeleteGuest guest: Guest?, fromTable table: Table?) {
+        if let table = table, let guest = guest {
+            let success = table.removeGuest(guest: guest)
+            if success {
+                let subViews = canvasView.subviews
+                    for subview in subViews {
+                        if let sbv = subview as? WeddingTableView {
+                            sbv.setNeedsUpdate()
+                        }
+
+                    }
+                delegate?.floorAreaViewController(controller: self, didSuccessfullyRemoveGuest: guest, fromTable: table)
+            }
+        }
     }
 }
 

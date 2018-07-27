@@ -50,6 +50,7 @@ class ViewController: UIViewController {
     private func addFloorViewController() {
         addChildViewController(floorPlanViewController)
         view.addSubview(floorPlanViewController.view)
+        floorPlanViewController.delegate = self
         floorPlanViewController.didMove(toParentViewController: self)
         floorPlanViewController.view.translatesAutoresizingMaskIntoConstraints = false
         floorPlanViewController.view.topAnchor.constraint(equalTo: self.floorPlanContainerView.topAnchor).isActive = true
@@ -57,6 +58,19 @@ class ViewController: UIViewController {
         floorPlanViewController.view.trailingAnchor.constraint(equalTo: self.floorPlanContainerView.trailingAnchor).isActive = true
         floorPlanViewController.view.leadingAnchor.constraint(equalTo: self.floorPlanContainerView.leadingAnchor).isActive = true
     }
+}
+
+extension ViewController: FloorAreaViewControllerDelegate {
+    func floorAreaViewController(controller: FloorAreaViewController, didRemoveWeddingTableView weddingTable: WeddingTableView?) {
+        guestsViewController.setNeedsUpdate()
+    }
+
+    func floorAreaViewController(controller: FloorAreaViewController, didSuccessfullyRemoveGuest guest: Guest?, fromTable table: Table?) {
+        guestsViewController.setNeedsUpdate()
+    }
+
+
+
 }
 
 
