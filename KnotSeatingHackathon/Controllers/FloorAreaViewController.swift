@@ -72,7 +72,7 @@ class FloorAreaViewController: UIViewController {
             vc.table = weddingTable.table
             vc.modalPresentationStyle = .popover
             vc.popoverPresentationController?.sourceView = weddingTable
-            vc.popoverPresentationController?.sourceRect = view.convert(weddingTable.bounds, to: canvasView)
+            vc.popoverPresentationController?.sourceRect = scrollView.convert(weddingTable.bounds, to: canvasView)
             vc.popoverPresentationController?.canOverlapSourceViewRect = false
             vc.guestList = guests
             present(vc, animated: true, completion: nil)
