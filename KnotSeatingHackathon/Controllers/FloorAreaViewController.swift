@@ -13,7 +13,6 @@ class FloorAreaViewController: UIViewController {
         didSet {
             if !weddingTables.isEmpty, let lastTable = weddingTables.last {
                 let nextNumber = weddingTables.count
-                print(nextNumber)
                 lastTable.table.set(tableNumber: nextNumber)
                 lastTable.setNeedsUpdate()
             }
@@ -88,6 +87,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size)
                     let weddingTable = WeddingTableView(table: table, frame: frame)
+                    weddingTable.delegate = self
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     canvasView.addSubview(weddingTable)
@@ -105,13 +105,13 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
     }
 }
 
+extension FloorAreaViewController: WeddingTableViewDelegate {
+    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession) {
+        if let index = weddingTables.index(of: view) {
+            weddingTables.remove(at: index)
+            view.removeFromSuperview()
+            dropInteraction(interaction, performDrop: session)
+        }
+    }
 
-//extension Bundle {
-//    static func loadView<T>(fromNib name: String, withType type: T.Type) -> T {
-//        if let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? T {
-//            return view
-//        }
-//
-//        fatalError("Could not load view with type \(String(describing: type))")
-//    }
-//}
+}
