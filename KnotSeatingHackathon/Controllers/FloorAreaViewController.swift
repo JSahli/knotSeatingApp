@@ -9,7 +9,16 @@
 import UIKit
 class FloorAreaViewController: UIViewController {
 
-    var weddingTables = [WeddingTableView]()
+    var weddingTables = [WeddingTableView]() {
+        didSet {
+            if !weddingTables.isEmpty, let lastTable = weddingTables.last {
+                let nextNumber = weddingTables.count
+                print(nextNumber)
+                lastTable.table.set(tableNumber: nextNumber)
+                lastTable.setNeedsUpdate()
+            }
+        }
+    }
     var highlightedTables = Set<WeddingTableView>()
 
     @IBOutlet weak var scrollView: UIScrollView! {
