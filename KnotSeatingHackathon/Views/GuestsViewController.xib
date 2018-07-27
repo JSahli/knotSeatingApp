@@ -21,12 +21,12 @@
             <rect key="frame" x="0.0" y="0.0" width="250" height="573"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="2ve-CM-ALM">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="513"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="2ve-CM-ALM">
+                    <rect key="frame" x="0.0" y="0.0" width="248" height="513"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sj0-wn-NAq">
-                    <rect key="frame" x="0.0" y="513" width="250" height="60"/>
+                    <rect key="frame" x="0.0" y="513" width="252" height="60"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="u0d-Sh-4AJ"/>
@@ -36,14 +36,14 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="2ve-CM-ALM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7P1-OX-j1i"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2ve-CM-ALM" secondAttribute="trailing" id="8eY-Lo-rYd"/>
                 <constraint firstItem="sj0-wn-NAq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="E5d-mz-hnA"/>
+                <constraint firstItem="2ve-CM-ALM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-2" id="GHI-gK-8y4"/>
                 <constraint firstItem="2ve-CM-ALM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="LXI-JP-te9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sj0-wn-NAq" secondAttribute="bottom" id="VKo-Cu-4WV"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sj0-wn-NAq" secondAttribute="trailing" id="hRp-wQ-quG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sj0-wn-NAq" secondAttribute="trailing" constant="-2" id="hRp-wQ-quG"/>
                 <constraint firstItem="sj0-wn-NAq" firstAttribute="top" secondItem="2ve-CM-ALM" secondAttribute="bottom" id="wgo-y4-V48"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
