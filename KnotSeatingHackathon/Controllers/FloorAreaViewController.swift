@@ -24,7 +24,6 @@ class FloorAreaViewController: UIViewController {
             canvasView.addInteraction(UIDropInteraction(delegate: self))
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +94,6 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     weddingTable.setNeedsUpdate()
-
                     canvasView.addSubview(weddingTable)
 
                 } else if let guestCell = draggedItem.localObject as? GuestTableViewCell,
@@ -105,6 +103,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     for weddingTable in weddingTables {
                         if weddingTable.frame.contains(point) {
                             guest.seatedAtTable = weddingTable.table.number
+                            guestCell.selectionStyle = UITableViewCellSelectionStyle.none
                             guestCell.updateUI()
                             weddingTable.addGuest(guest)
                             }

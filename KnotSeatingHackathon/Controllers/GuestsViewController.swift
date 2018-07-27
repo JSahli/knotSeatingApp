@@ -70,6 +70,11 @@ extension GuestsViewController: UICollectionViewDataSource {
 
 extension GuestsViewController: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        if let cell = tableView.cellForRow(at: indexPath) as? GuestTableViewCell {
+            if cell.guest?.seatedAtTable != nil {
+                return [UIDragItem]()
+            }
+        }
         session.localContext = tableView
         return dragItems(at: indexPath)
     }
