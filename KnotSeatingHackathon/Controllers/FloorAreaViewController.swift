@@ -9,15 +9,7 @@
 import UIKit
 class FloorAreaViewController: UIViewController {
 
-    var weddingTables = [WeddingTableView]() {
-        didSet {
-            if !weddingTables.isEmpty, let lastTable = weddingTables.last {
-                let nextNumber = weddingTables.count
-                lastTable.table.set(tableNumber: nextNumber)
-                lastTable.setNeedsUpdate()
-            }
-        }
-    }
+    var weddingTables = [WeddingTableView]()
     var highlightedTables = Set<WeddingTableView>()
 
     @IBOutlet weak var scrollView: UIScrollView! {
@@ -92,15 +84,18 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
         deHighlightAllTables()
         if let draggedItems = session.localDragSession?.items {
             for draggedItem in draggedItems {
-                if let table = draggedItem.localObject as? Table {
+                if let tableType = draggedItem.localObject as? Table.TableType {
                     let point = session.location(in: canvasView)
-                    let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size)
-                    let weddingTable = WeddingTableView(table: table, frame: frame)
+                    let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
+                    let newTable = Table(number: weddingTables.count + 1, tableType: tableType)
+                    let weddingTable = WeddingTableView(table: newTable, frame: frame)
                     //weddingTable.delegate = self
                     let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
                     weddingTable.addGestureRecognizer(pan)
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
+                    weddingTable.setNeedsUpdate()
+
                     canvasView.addSubview(weddingTable)
 
                 } else if let guestCell = draggedItem.localObject as? GuestTableViewCell,
@@ -114,13 +109,6 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                             weddingTable.addGuest(guest)
                             }
                         }
-
-
-//                    let label = UILabel(frame: CGRect(x: point.x, y: point.y, width: 80, height: 30))
-//
-//                    label.text = guest.fullName
-//                    canvasView.addSubview(label)
-//                    label.center = point
                 }
             }
         }

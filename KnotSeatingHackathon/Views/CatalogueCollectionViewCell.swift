@@ -10,13 +10,14 @@ import UIKit
 
 class CatalogueCollectionViewCell: UICollectionViewCell {
 
-    var table: Table? {
+    var tableType: Table.TableType? {
         didSet {
             updateUI()
         }
     }
 
     @IBOutlet weak var assetImageView: UIImageView! { didSet { updateUI() } }
+    @IBOutlet weak var guestAllowedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,8 +25,9 @@ class CatalogueCollectionViewCell: UICollectionViewCell {
     }
 
     private func updateUI() {
-        if let currentTable = table {
+        if let currentTable = tableType {
             assetImageView?.image = currentTable.assetImage
+            guestAllowedLabel.text = "\(currentTable.capacity) Guests"
         }
     }
 

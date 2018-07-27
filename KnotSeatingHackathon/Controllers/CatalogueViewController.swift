@@ -2,7 +2,7 @@ import UIKit
 
 class CatalogueViewController: UIViewController {
 
-    var assets: [Table] = [Table]()
+    var tableTypes = Table.TableType.allCases
 
     weak var collectionView: UICollectionView! {
         didSet {
@@ -14,16 +14,6 @@ class CatalogueViewController: UIViewController {
             layout.scrollDirection = .horizontal
             collectionView.register(UINib(nibName: "CatalogueCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "catalogueCell")
             collectionView.reloadData()
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        for i in 0...3 {
-            if let image = UIImage(named: "table_circle") {
-                let table = Table(number: i, assetImage: image, maxLimit: 10)
-                assets.append(table)
-            }
         }
     }
 
@@ -43,13 +33,14 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return assets.count
+        return tableTypes.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "catalogueCell", for: indexPath) as? CatalogueCollectionViewCell {
-            let table = assets[indexPath.row]
-            cell.table = table
+            let tableType = tableTypes[indexPath.row]
+            cell.tableType = tableType
+            
             return cell
 
         }
@@ -57,11 +48,19 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tableType = tableTypes[indexPath.row]
+        if tableType == .rectangle {
+           return CGSize(width: 200.0, height: 100.0)
+        }
         return CGSize(width: 100.0, height: 100.0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return (view.bounds.width / 5) - 40.0
+        return (view.bounds.width / 4) - 40.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return (view.bounds.width / 4) - 40.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -97,10 +96,10 @@ extension CatalogueViewController: UICollectionViewDropDelegate {
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         if let destinationIndexPath = coordinator.destinationIndexPath {
             for item in coordinator.items {
-                if let sourceIndexPath = item.sourceIndexPath, let table = item.dragItem.localObject as? Table {
+                if let sourceIndexPath = item.sourceIndexPath, let table = item.dragItem.localObject as? Table.TableType {
                     collectionView.performBatchUpdates({
-                        self.assets.remove(at: sourceIndexPath.row)
-                        self.assets.insert(table, at: destinationIndexPath.row)
+                        self.tableTypes.remove(at: sourceIndexPath.row)
+                        self.tableTypes.insert(table, at: destinationIndexPath.row)
                         self.collectionView.deleteItems(at: [sourceIndexPath])
                         self.collectionView.insertItems(at: [destinationIndexPath])
                     })
@@ -116,7 +115,7 @@ extension CatalogueViewController {
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
         if let image = (collectionView.cellForItem(at: indexPath) as? CatalogueCollectionViewCell)?.assetImageView.image {
             let dragItem = UIDragItem(itemProvider: NSItemProvider(object: image))
-            dragItem.localObject = assets[indexPath.row]
+            dragItem.localObject = tableTypes[indexPath.row]
             return [dragItem]
         } else {
             return []
