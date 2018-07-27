@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +13,7 @@
             <connections>
                 <outlet property="backgroundImageView" destination="5iv-ca-GFh" id="yYL-aV-a7h"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Mgf-no-fb0"/>
+                <outlet property="numGuestsLabel" destination="nWo-dr-Qs5" id="l38-GF-CIs"/>
                 <outlet property="tableNumberLabel" destination="8h3-wq-15U" id="yRt-7b-60m"/>
             </connections>
         </placeholder>
@@ -31,12 +31,20 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWo-dr-Qs5">
+                    <rect key="frame" x="79" y="122.5" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5iv-ca-GFh" secondAttribute="trailing" id="5A0-Ha-U9J"/>
+                <constraint firstItem="nWo-dr-Qs5" firstAttribute="top" secondItem="8h3-wq-15U" secondAttribute="bottom" id="L5s-d0-Kqp"/>
                 <constraint firstItem="5iv-ca-GFh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Mcb-tv-EjF"/>
                 <constraint firstItem="8h3-wq-15U" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="WhK-tG-PEq"/>
+                <constraint firstItem="nWo-dr-Qs5" firstAttribute="centerX" secondItem="5iv-ca-GFh" secondAttribute="centerX" id="bS0-dD-4Op"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5iv-ca-GFh" secondAttribute="bottom" id="e5O-Vv-FUV"/>
                 <constraint firstItem="8h3-wq-15U" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eYT-QA-0V3"/>
                 <constraint firstItem="5iv-ca-GFh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iNo-LK-H70"/>

@@ -8,14 +8,20 @@
 
 import UIKit
 
+protocol WeddingTableViewDelegate: class {
+    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession)
+}
+
 class WeddingTableView: UIView {
 
-
     @IBOutlet var contentView: UIView!
-    var table: Table! { didSet { updateUI() } }
-
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var numGuestsLabel: UILabel!
+
+    var table: Table! { didSet { updateUI() } }
+
+    weak var delegate: WeddingTableViewDelegate?
 
     init(table: Table, frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +49,9 @@ class WeddingTableView: UIView {
         guard let table = self.table, let number = table.number else { return }
         backgroundImageView?.image = table.assetImage
         tableNumberLabel?.text = String(number)
+        numGuestsLabel.text = String("0/ \(table.maxLimit)")
     }
 }
+
 
 

@@ -147,7 +147,6 @@ extension CatalogueViewController: UICollectionViewDropDelegate {
             }
         }
     }
-
 }
 
 // MARK: Helper Functions
