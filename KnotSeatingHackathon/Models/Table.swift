@@ -23,6 +23,10 @@ class Table: NSObject {
         self.guests = currentGuests
     }
 
+    func set(tableNumber number: Int) {
+        self.number = number
+    }
+
     var remainingCapacity: Int {
         if let guests = guests {
             return maxLimit - guests.count

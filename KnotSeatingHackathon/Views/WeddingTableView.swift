@@ -29,6 +29,10 @@ class WeddingTableView: UIView {
         prepare()
     }
 
+    func setNeedsUpdate() {
+        updateUI()
+    }
+
     private func prepare() {
         Bundle.main.loadNibNamed("WeddingTableView", owner: self, options: nil)
         addSubview(contentView)
