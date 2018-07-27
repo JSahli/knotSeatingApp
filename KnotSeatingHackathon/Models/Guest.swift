@@ -4,7 +4,7 @@ class Guest: NSObject {
     var firstName: String
     var lastName: String
     var group: String
-    var seated: Bool = false
+    var seatedAtTable: Int?
 
     var fullName: String {
         return "\(firstName) \(lastName)"

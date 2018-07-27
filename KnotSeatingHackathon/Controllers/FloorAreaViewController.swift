@@ -92,8 +92,6 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     weddingTables.append(weddingTable)
                     canvasView.addSubview(weddingTable)
 
-
-
                 } else if let guest = draggedItem.localObject as? Guest {
                     let point = session.location(in: canvasView)
                     let label = UILabel(frame: CGRect(x: point.x, y: point.y, width: 80, height: 30))

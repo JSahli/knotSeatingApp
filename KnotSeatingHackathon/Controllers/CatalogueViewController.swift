@@ -25,7 +25,6 @@ class CatalogueViewController: UIViewController {
                 assets.append(table)
             }
         }
-
     }
 
     override func viewDidLayoutSubviews() {
@@ -110,7 +109,6 @@ extension CatalogueViewController: UICollectionViewDropDelegate {
             }
         }
     }
-
 }
 
 // MARK: Helper Functions
