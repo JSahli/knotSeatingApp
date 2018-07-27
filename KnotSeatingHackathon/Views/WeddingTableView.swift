@@ -7,10 +7,10 @@
 //
 
 import UIKit
-
-protocol WeddingTableViewDelegate: class {
-    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession)
-}
+//
+//protocol WeddingTableViewDelegate: class {
+//    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession)
+//}
 
 class WeddingTableView: UIView {
 
@@ -21,7 +21,7 @@ class WeddingTableView: UIView {
 
     var table: Table! { didSet { updateUI() } }
 
-    weak var delegate: WeddingTableViewDelegate?
+//    weak var delegate: WeddingTableViewDelegate?
 
     init(table: Table, frame: CGRect) {
         super.init(frame: frame)
