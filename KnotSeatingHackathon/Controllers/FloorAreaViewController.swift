@@ -42,6 +42,15 @@ class FloorAreaViewController: UIViewController {
         super.viewDidAppear(animated)
         scrollView.contentSize = canvasView.bounds.size
     }
+
+    @objc func handlePan(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        if let view = recognizer.view {
+            view.center = CGPoint(x:view.center.x + translation.x,
+                                  y:view.center.y + translation.y)
+        }
+        recognizer.setTranslation(CGPoint.zero, in: self.view)
+    }
 }
 
 extension FloorAreaViewController: UIDropInteractionDelegate {
@@ -87,7 +96,9 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size)
                     let weddingTable = WeddingTableView(table: table, frame: frame)
-                    weddingTable.delegate = self
+                    //weddingTable.delegate = self
+                    let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
+                    weddingTable.addGestureRecognizer(pan)
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     canvasView.addSubview(weddingTable)
@@ -103,15 +114,4 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
             }
         }
     }
-}
-
-extension FloorAreaViewController: WeddingTableViewDelegate {
-    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession) {
-        if let index = weddingTables.index(of: view) {
-            weddingTables.remove(at: index)
-            view.removeFromSuperview()
-            dropInteraction(interaction, performDrop: session)
-        }
-    }
-
 }
