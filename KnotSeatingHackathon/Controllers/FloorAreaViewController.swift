@@ -13,7 +13,6 @@ class FloorAreaViewController: UIViewController {
         didSet {
             if !weddingTables.isEmpty, let lastTable = weddingTables.last {
                 let nextNumber = weddingTables.count
-                print(nextNumber)
                 lastTable.table.set(tableNumber: nextNumber)
                 lastTable.setNeedsUpdate()
             }
@@ -42,6 +41,15 @@ class FloorAreaViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         scrollView.contentSize = canvasView.bounds.size
+    }
+
+    @objc func handlePan(recognizer: UIPanGestureRecognizer) {
+        let translation = recognizer.translation(in: self.view)
+        if let view = recognizer.view {
+            view.center = CGPoint(x:view.center.x + translation.x,
+                                  y:view.center.y + translation.y)
+        }
+        recognizer.setTranslation(CGPoint.zero, in: self.view)
     }
 }
 
@@ -88,11 +96,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: table.assetImage.size)
                     let weddingTable = WeddingTableView(table: table, frame: frame)
+                    //weddingTable.delegate = self
+                    let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
+                    weddingTable.addGestureRecognizer(pan)
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     canvasView.addSubview(weddingTable)
-
-
 
                 } else if let guest = draggedItem.localObject as? Guest {
                     let point = session.location(in: canvasView)
@@ -106,14 +115,3 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
         }
     }
 }
-
-
-//extension Bundle {
-//    static func loadView<T>(fromNib name: String, withType type: T.Type) -> T {
-//        if let view = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? T {
-//            return view
-//        }
-//
-//        fatalError("Could not load view with type \(String(describing: type))")
-//    }
-//}

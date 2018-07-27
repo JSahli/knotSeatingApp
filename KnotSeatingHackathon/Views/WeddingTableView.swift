@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol WeddingTableViewDelegate: class {
+    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession)
+}
+
 class WeddingTableView: UIView {
 
     @IBOutlet var contentView: UIView!
@@ -16,6 +20,8 @@ class WeddingTableView: UIView {
     @IBOutlet weak var numGuestsLabel: UILabel!
 
     var table: Table! { didSet { updateUI() } }
+
+    weak var delegate: WeddingTableViewDelegate?
 
     init(table: Table, frame: CGRect) {
         super.init(frame: frame)
@@ -47,5 +53,6 @@ class WeddingTableView: UIView {
         numGuestsLabel.text = String("0/ \(table.maxLimit)")
     }
 }
+
 
 
