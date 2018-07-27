@@ -10,12 +10,12 @@ import UIKit
 
 class WeddingTableView: UIView {
 
-
     @IBOutlet var contentView: UIView!
-    var table: Table! { didSet { updateUI() } }
-
     @IBOutlet weak var tableNumberLabel: UILabel!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var numGuestsLabel: UILabel!
+
+    var table: Table! { didSet { updateUI() } }
 
     init(table: Table, frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +43,8 @@ class WeddingTableView: UIView {
         guard let table = self.table else { return }
         backgroundImageView?.image = table.assetImage
         tableNumberLabel?.text = String(table.number)
+
+        numGuestsLabel.text = String("0/ \(table.maxLimit)")
     }
 }
 
