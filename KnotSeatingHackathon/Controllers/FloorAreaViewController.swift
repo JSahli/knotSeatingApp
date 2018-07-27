@@ -120,10 +120,12 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     weddingTable.addGestureRecognizer(pan)
 //                    weddingTable.addGestureRecognizer(rotate)
                     weddingTable.cancelDelegate = self
+                    // Tap Gesture
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
+                    weddingTable.addGestureRecognizer(tap)
                     weddingTable.center = point
                     weddingTables.append(weddingTable)
                     weddingTable.setNeedsUpdate()
-
                     canvasView.addSubview(weddingTable)
 
                 } else if let guestCell = draggedItem.localObject as? GuestTableViewCell,
@@ -133,6 +135,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     for weddingTable in weddingTables {
                         if weddingTable.frame.contains(point), guest.seatedAtTable == nil {
                             guest.seatedAtTable = weddingTable.table.number
+                            guestCell.selectionStyle = UITableViewCellSelectionStyle.none
                             guestCell.updateUI()
                             weddingTable.addGuest(guest)
                             }
