@@ -11,10 +11,10 @@ protocol CancelButtonDelegate: class {
 }
 
 import UIKit
-
-protocol WeddingTableViewDelegate: class {
-    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession)
-}
+//
+//protocol WeddingTableViewDelegate: class {
+//    func weddingTableView(view: WeddingTableView, shouldPerformDropInteraction interaction: UIDropInteraction, withSession session: UIDropSession)
+//}
 
 class WeddingTableView: UIView {
 
@@ -24,6 +24,7 @@ class WeddingTableView: UIView {
     @IBOutlet weak var numGuestsLabel: UILabel!
 
     var table: Table! { didSet { updateUI() } }
+
 
     weak var cancelDelegate: CancelButtonDelegate?
 
