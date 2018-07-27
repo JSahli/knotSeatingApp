@@ -17,6 +17,7 @@ class CatalogueCollectionViewCell: UICollectionViewCell {
     }
 
     @IBOutlet weak var assetImageView: UIImageView! { didSet { updateUI() } }
+    @IBOutlet weak var guestAllowedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,7 @@ class CatalogueCollectionViewCell: UICollectionViewCell {
     private func updateUI() {
         if let currentTable = table {
             assetImageView?.image = currentTable.assetImage
+            guestAllowedLabel.text = "\(currentTable.tableType.rawValue) Guests"
         }
     }
 

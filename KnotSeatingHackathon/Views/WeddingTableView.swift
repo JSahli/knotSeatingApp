@@ -40,9 +40,9 @@ class WeddingTableView: UIView {
     }
 
     private func updateUI() {
-        guard let table = self.table else { return }
+        guard let table = self.table, let number = table.number else { return }
         backgroundImageView?.image = table.assetImage
-        tableNumberLabel?.text = String(table.number)
+        tableNumberLabel?.text = String(number)
     }
 }
 

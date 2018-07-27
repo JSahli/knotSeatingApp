@@ -19,13 +19,41 @@ class CatalogueViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in 0...3 {
-            if let image = UIImage(named: "table_circle") {
-                let table = Table(number: i, assetImage: image, maxLimit: 10, guests: nil)
-                assets.append(table)
+        for tableType in Table.TableType.allCases {
+            switch tableType {
+            case .circle:
+                guard let image = UIImage(named: "table_circle") else { return }
+
+                    let table = Table(
+                        assetImage: image,
+                        maxLimit: tableType.rawValue,
+                        guests: nil,
+                        tableType: tableType)
+
+                    assets.append(table)
+
+            case .rectangle:
+                guard let image = UIImage(named: "table_rectangle") else { return }
+
+                    let table = Table(
+                        assetImage: image,
+                        maxLimit: tableType.rawValue,
+                        guests: nil,
+                        tableType: tableType)
+
+                    assets.append(table)
+
+            case .square:
+                guard let image = UIImage(named: "table_square") else { return }
+                    let table = Table(
+                        assetImage: image,
+                        maxLimit: tableType.rawValue,
+                        guests: nil,
+                        tableType: tableType)
+
+                    assets.append(table)
             }
         }
-
     }
 
     override func viewDidLayoutSubviews() {
@@ -51,6 +79,7 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "catalogueCell", for: indexPath) as? CatalogueCollectionViewCell {
             let table = assets[indexPath.row]
             cell.table = table
+            
             return cell
 
         }
@@ -58,11 +87,19 @@ extension CatalogueViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tableAsset = assets[indexPath.row]
+        if tableAsset.tableType == .rectangle {
+           return CGSize(width: 200.0, height: 100.0)
+        }
         return CGSize(width: 100.0, height: 100.0)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return (view.bounds.width / 5) - 40.0
+        return (view.bounds.width / 4) - 40.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return (view.bounds.width / 4) - 40.0
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

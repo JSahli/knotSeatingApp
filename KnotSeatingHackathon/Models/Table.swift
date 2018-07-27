@@ -1,20 +1,19 @@
 import UIKit
 
 class Table: NSObject {
-    var number: Int
+    var number: Int?
     var guests: [Guest]?
     var assetImage: UIImage
     var maxLimit: Int
+    var tableType: TableType
 
-    init(number: Int, assetImage: UIImage, maxLimit: Int, guests: [Guest]?) {
+    init(number: Int? = nil, assetImage: UIImage, maxLimit: Int, guests: [Guest]?, tableType: TableType) {
         self.number = number
         self.guests = guests
         self.assetImage = assetImage
         self.maxLimit = maxLimit
+        self.tableType = tableType
         super.init()
-//        if let image = resizeImage(image: assetImage, targetSize: CGSize(width: 150.0, height: 150.0)) {
-//            self.assetImage = image
-//        }
     }
 
     func addGuest(guest: Guest) {
@@ -57,4 +56,16 @@ class Table: NSObject {
 
         return newImage
     }
+
+    enum TableType: Int {
+        case circle = 8
+        case square = 10
+        case rectangle = 12
+
+        static var allCases: [TableType] {
+            return [.circle, .square, .rectangle]
+        }
+    }
 }
+
+
