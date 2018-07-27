@@ -26,6 +26,10 @@ class GuestsViewController: UIViewController {
         tableView.dataSource = self
         tableView.dragDelegate = self
     }
+
+    func setNeedsUpdate() {
+        tableView.reloadData()
+    }
 }
 
 extension GuestsViewController: UITableViewDataSource {

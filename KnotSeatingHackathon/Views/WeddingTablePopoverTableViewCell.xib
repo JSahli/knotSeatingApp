@@ -10,23 +10,40 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="guestPopUpCell" textLabel="qHG-cW-AIg" style="IBUITableViewCellStyleDefault" id="vEn-gY-PQE">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="guestPopUpCell" rowHeight="70" id="vEn-gY-PQE" customClass="WeddingTablePopoverTableViewCell" customModule="KnotSeatingHackathon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vEn-gY-PQE" id="l0c-XF-u6q">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qHG-cW-AIg">
-                        <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P2I-mb-rRQ">
+                        <rect key="frame" x="16" y="20" width="93" height="29.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cyy-GZ-Vx1">
+                        <rect key="frame" x="325" y="20" width="30" height="30"/>
+                        <state key="normal" title="❌"/>
+                        <connections>
+                            <action selector="removeGuestFromTable:" destination="vEn-gY-PQE" eventType="touchUpInside" id="oZX-UN-TzX"/>
+                        </connections>
+                    </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="P2I-mb-rRQ" secondAttribute="bottom" constant="20" symbolic="YES" id="2cL-Af-jk3"/>
+                    <constraint firstAttribute="bottom" secondItem="Cyy-GZ-Vx1" secondAttribute="bottom" constant="20" symbolic="YES" id="9j0-bF-8PG"/>
+                    <constraint firstItem="P2I-mb-rRQ" firstAttribute="leading" secondItem="l0c-XF-u6q" secondAttribute="leading" constant="16" id="K1c-Mb-oxL"/>
+                    <constraint firstItem="Cyy-GZ-Vx1" firstAttribute="top" secondItem="l0c-XF-u6q" secondAttribute="top" constant="20" symbolic="YES" id="aE6-fw-od6"/>
+                    <constraint firstItem="P2I-mb-rRQ" firstAttribute="top" secondItem="l0c-XF-u6q" secondAttribute="top" constant="20" symbolic="YES" id="iPo-hq-XQp"/>
+                    <constraint firstAttribute="trailing" secondItem="Cyy-GZ-Vx1" secondAttribute="trailing" constant="20" symbolic="YES" id="zO7-da-TQd"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-6" y="-24"/>
+            <connections>
+                <outlet property="nameLabel" destination="P2I-mb-rRQ" id="bg5-RX-s2y"/>
+            </connections>
+            <point key="canvasLocation" x="-6.5" y="-11"/>
         </tableViewCell>
     </objects>
 </document>
