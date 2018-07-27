@@ -11,6 +11,7 @@ class FloorAreaViewController: UIViewController {
 
     var weddingTables = [WeddingTableView]()
     var highlightedTables = Set<WeddingTableView>()
+    var lastDeletedNumber: Int = Int.max
 
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
@@ -103,23 +104,29 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                 if let tableType = draggedItem.localObject as? Table.TableType {
                     let point = session.location(in: canvasView)
                     let frame = CGRect(origin: CGPoint.zero, size: tableType.assetImage.size)
-                    let newTable = Table(number: weddingTables.count + 1, tableType: tableType)
-                    let weddingTable = WeddingTableView(table: newTable, frame: frame)
-                    weddingTable.cancelDelegate = self
 
-                    //Pan Gesture
-                    let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
-                    weddingTable.addGestureRecognizer(pan)
+                        let weddingTableCount = lastDeletedNumber <= weddingTables.count ? lastDeletedNumber : weddingTables.count + 1
 
-                    // Tap Gesture
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
-                    weddingTable.addGestureRecognizer(tap)
+                        lastDeletedNumber = Int.max
 
-                    weddingTable.center = point
-                    weddingTables.append(weddingTable)
-                    weddingTable.setNeedsUpdate()
+                        let newTable = Table(number: weddingTableCount, tableType: tableType)
+                        let weddingTable = WeddingTableView(table: newTable, frame: frame)
+                        weddingTable.cancelDelegate = self
 
-                    canvasView.addSubview(weddingTable)
+                        //Pan Gesture
+                        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
+                        weddingTable.addGestureRecognizer(pan)
+
+                        // Tap Gesture
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(recognizer:)))
+                        weddingTable.addGestureRecognizer(tap)
+
+                        weddingTable.center = point
+                        weddingTables.append(weddingTable)
+                        weddingTable.setNeedsUpdate()
+
+                        canvasView.addSubview(weddingTable)
+
 
                 } else if let guestCell = draggedItem.localObject as? GuestTableViewCell,
                           let guest = guestCell.guest {
@@ -141,6 +148,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
 extension FloorAreaViewController: CancelButtonDelegate {
     func cancelButtonPressed(selector: UIButton, selected table: WeddingTableView) {
         guard let index = weddingTables.index(of: table) else { return }
+        lastDeletedNumber = table.table.number
         weddingTables.remove(at: index)
         table.removeFromSuperview()
     }
