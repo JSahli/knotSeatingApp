@@ -54,7 +54,6 @@ class FloorAreaViewController: UIViewController {
             vc.popoverPresentationController?.sourceView = weddingTable
             vc.popoverPresentationController?.sourceRect = view.convert(weddingTable.bounds, to: canvasView)
             vc.popoverPresentationController?.canOverlapSourceViewRect = false
-            vc.popoverPresentationController?.delegate = self
             vc.guestList = guests
             present(vc, animated: true, completion: nil)
         }
@@ -121,7 +120,7 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
 
                     let point = session.location(in: canvasView)
                     for weddingTable in weddingTables {
-                        if weddingTable.frame.contains(point) {
+                        if weddingTable.frame.contains(point), guest.seatedAtTable == nil {
                             guest.seatedAtTable = weddingTable.table.number
                             guestCell.updateUI()
                             weddingTable.addGuest(guest)
@@ -133,8 +132,3 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
     }
 }
 
-extension FloorAreaViewController: UIPopoverPresentationControllerDelegate {
-//    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-//        return .
-//    }
-}
