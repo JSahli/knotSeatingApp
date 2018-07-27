@@ -62,13 +62,19 @@ class Table: NSObject {
     }
 
     enum TableType: Int {
-        case circle
+        case smallCircle
+        case mediumCircle
+        case largeCircle
         case square
         case rectangle
 
         var capacity: Int {
             switch self {
-            case .circle:
+            case .smallCircle:
+                return 4
+            case .mediumCircle:
+                return 6
+            case .largeCircle:
                 return 8
             case .rectangle:
                 return 12
@@ -79,8 +85,12 @@ class Table: NSObject {
 
         var assetImage: UIImage {
             switch self {
-            case .circle:
+            case .largeCircle:
                 return #imageLiteral(resourceName: "table_circle")
+            case .mediumCircle:
+                return #imageLiteral(resourceName: "medium-circle")
+            case .smallCircle:
+                return #imageLiteral(resourceName: "small-circle")
             case .rectangle:
                 return #imageLiteral(resourceName: "table_rectangle")
             case .square:
@@ -89,7 +99,7 @@ class Table: NSObject {
         }
 
         static var allCases: [TableType] {
-            return [.circle, .square, .rectangle]
+            return [.smallCircle, .mediumCircle, .largeCircle, .square]
         }
     }
 }
