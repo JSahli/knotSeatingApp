@@ -84,9 +84,12 @@ extension GuestsViewController: UITableViewDragDelegate {
 // MARK: Helper Functions
 extension GuestsViewController {
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
+        guard let guestCell = tableView.cellForRow(at: indexPath) as? GuestTableViewCell else {
+            return [UIDragItem]()
+        }
         let name = testGuests[indexPath.section][indexPath.row].fullName
         let dragItem = UIDragItem(itemProvider: NSItemProvider(object: name as NSItemProviderWriting))
-        dragItem.localObject = testGuests[indexPath.section][indexPath.row]
+        dragItem.localObject = guestCell
         return [dragItem]
     }
 }

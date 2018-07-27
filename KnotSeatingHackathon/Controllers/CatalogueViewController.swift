@@ -21,7 +21,7 @@ class CatalogueViewController: UIViewController {
         super.viewDidLoad()
         for i in 0...3 {
             if let image = UIImage(named: "table_circle") {
-                let table = Table(number: i, assetImage: image, maxLimit: 10, guests: nil)
+                let table = Table(number: i, assetImage: image, maxLimit: 10)
                 assets.append(table)
             }
         }

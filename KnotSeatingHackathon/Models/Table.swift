@@ -2,11 +2,11 @@ import UIKit
 
 class Table: NSObject {
     var number: Int
-    var guests: [Guest]?
+    var guests = [Guest] ()
     var assetImage: UIImage
     var maxLimit: Int
 
-    init(number: Int, assetImage: UIImage, maxLimit: Int, guests: [Guest]?) {
+    init(number: Int, assetImage: UIImage, maxLimit: Int, guests: [Guest] = [Guest]()) {
         self.number = number
         self.guests = guests
         self.assetImage = assetImage
@@ -18,9 +18,7 @@ class Table: NSObject {
     }
 
     func addGuest(guest: Guest) {
-        var currentGuests = guests ?? [Guest]()
-        currentGuests.append(guest)
-        self.guests = currentGuests
+        guests.append(guest)
     }
 
     func set(tableNumber number: Int) {
@@ -28,10 +26,7 @@ class Table: NSObject {
     }
 
     var remainingCapacity: Int {
-        if let guests = guests {
-            return maxLimit - guests.count
-        }
-        return maxLimit
+        return maxLimit - guests.count
     }
 
 

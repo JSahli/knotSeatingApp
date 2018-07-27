@@ -35,6 +35,11 @@ class WeddingTableView: UIView {
         prepare()
     }
 
+    func addGuest(_ guest: Guest) {
+        table.addGuest(guest: guest)
+        updateUI()
+    }
+
     func setNeedsUpdate() {
         updateUI()
     }
@@ -49,8 +54,7 @@ class WeddingTableView: UIView {
         guard let table = self.table else { return }
         backgroundImageView?.image = table.assetImage
         tableNumberLabel?.text = String(table.number)
-
-        numGuestsLabel.text = String("0/ \(table.maxLimit)")
+        numGuestsLabel.text = String("\(table.guests.count)/ \(table.maxLimit)")
     }
 }
 

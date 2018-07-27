@@ -103,13 +103,24 @@ extension FloorAreaViewController: UIDropInteractionDelegate {
                     weddingTables.append(weddingTable)
                     canvasView.addSubview(weddingTable)
 
-                } else if let guest = draggedItem.localObject as? Guest {
+                } else if let guestCell = draggedItem.localObject as? GuestTableViewCell,
+                          let guest = guestCell.guest {
+
                     let point = session.location(in: canvasView)
-                    let label = UILabel(frame: CGRect(x: point.x, y: point.y, width: 80, height: 30))
-                    
-                    label.text = guest.fullName
-                    canvasView.addSubview(label)
-                    label.center = point
+                    for weddingTable in weddingTables {
+                        if weddingTable.frame.contains(point) {
+                            guest.seatedAtTable = weddingTable.table.number
+                            guestCell.updateUI()
+                            weddingTable.addGuest(guest)
+                            }
+                        }
+
+
+//                    let label = UILabel(frame: CGRect(x: point.x, y: point.y, width: 80, height: 30))
+//
+//                    label.text = guest.fullName
+//                    canvasView.addSubview(label)
+//                    label.center = point
                 }
             }
         }
